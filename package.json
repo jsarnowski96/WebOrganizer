@@ -1,0 +1,29 @@
+{
+  "name": "weborganizer",
+  "version": "1.0.0",
+  "description": "MERN stack web application designed to help you organize your day-to-day routine.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsarnowski96/WebOrganizer.git"
+  },
+  "keywords": [
+    "MERN",
+    "API",
+    "MongoDB",
+    "NodeJS",
+    "Express"
+  ],
+  "author": "Jakub Sarnowski | j.sarnowski@linux.pl",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jsarnowski96/WebOrganizer/issues"
+  },
+  "homepage": "https://github.com/jsarnowski96/WebOrganizer#readme"
+}
