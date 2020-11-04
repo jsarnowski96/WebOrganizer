@@ -1,0 +1,61 @@
+<h1>Register</h1>
+<form action="/auth/register" method="POST">
+    <div>
+        <label for="login">Login</label>
+        <input 
+            type="login" 
+            name="login" 
+            placeholder="Enter your login" 
+            value="<%= typeof login != 'undefined' ? login : '' %>"
+        />
+    </div>
+    <div>
+        <label for="firstname">First name</label>
+        <input
+            type="firstname"
+            name="firstname"
+            placeholder="Entery your firstname"
+            value="<%= typeof firstname != 'undefined' ? firstname : '' %>"
+        />
+    </div>
+    <div>
+        <label for="lastname">Last name</label>
+        <input
+            type="lastname"
+            name="lastname"
+            placeholder="Entery your lastname"
+            value="<%= typeof lastname != 'undefined' ? lastname : '' %>"
+        />
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value="<%= typeof email != 'undefined' ? email : '' %>"
+        />
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            value="<%= typeof password != 'undefined' ? password : '' %>"
+        />
+    </div>
+    <div>
+        <label for="password_confirm">Password confirmation</label>
+        <input
+            type="password_confirm"
+            name="password_confirm"
+            placeholder="Confirm your password"
+            value="<%= typeof password_confirm != 'undefined' ? password_confirm : '' %>"
+        />
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Register account</button>
+    <button type="reset" class="btn btn-info btn-block">Reset form</button>
+    <button type="reset" class="btn btn-danger btn-block">Cancel</button>
+</form>
+<p>Have an Account? <a href="/auth/login">Login</a></p>
