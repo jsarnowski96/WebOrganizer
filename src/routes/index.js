@@ -1,14 +1,23 @@
+const {ensureAuthenticated} = require('../config/auth.js');
 const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    console.log(res.status(200));
+    res.status(200);
     res.render('welcome');
 });
 
 router.get('/register', (req, res, next) => {
-    console.log(res.status(200));
+    res.status(200);
     res.render('register');
 });
+
+router.get('/dashboard', ensureAuthenticated, (req, res, next) => {
+    res.status(200);
+    console.log(req);
+    res.render('dashboard',{
+        user: req.user
+    });
+})
 
 module.exports = router;
