@@ -8,7 +8,7 @@ const flash = require('connect-flash');
 const expressEjsLayout = require('express-ejs-layouts');
 const app = express();
 
-mongoose.connect('mongodb+srv://wo_tester:iGDJifg7vh8pHRSm@dev.bpq8s.mongodb.net/WebOrganizer?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://'+DB_USERNAME+':'+DB_PASSWORD+'iGDJifg7vh8pHRSm@dev.bpq8s.mongodb.net/WebOrganizer?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
