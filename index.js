@@ -11,7 +11,7 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
-mongoose.connect('mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@dev.bpq8s.mongodb.net/WebOrganizer?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@'+process.env.DB_URL+'/'+process.env.DB_NAME+'?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
