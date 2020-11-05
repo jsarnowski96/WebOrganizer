@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">Web Organizer</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/about">About</a>
+        <a class="nav-link" href="/contact">Contact</a>
+        <% if(!user) { %>
+            <a class="nav-link" href="/auth/login">Login</a>
+            <a class="nav-link" href="/auth/register">Sign up</a>
+        <% } else { %>
+            <a class="nav-link" href="/">Profile</a>
+            <a class="nav-link" href="/auth/logout">Logout</a>
+        <% } %>
+      </div>
+    </div>
+  </nav>

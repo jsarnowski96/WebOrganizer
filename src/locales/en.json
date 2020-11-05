@@ -1,0 +1,44 @@
+{
+    "general": {
+        "greeting": "Welcome to Web Organizer!",
+        "lng_icon": "",
+        
+        "navbar_items": {
+            "home": "Home",
+            "about": "About",
+            "contact": "Contact",
+            "login": "Login",
+            "signup": "Sign up"
+        }
+    },
+
+    "dashboard": {
+        
+        "profile": {
+
+        },
+
+        "notes": {
+
+        }
+    },
+
+    "login": {
+        "login": "Email",
+        "password": "Password"
+    },
+
+    "register": {
+        "username": "Login",
+        "firstname": "First name",
+        "lastname": "Last name",
+        "email": "Email",
+        "password": "Password",
+        "password_confirm": "Confirm password",
+        "buttons": {
+            "register": "Register",
+            "reset": "Reset form",
+            "cancel": "Cancel"
+        }
+    }
+}

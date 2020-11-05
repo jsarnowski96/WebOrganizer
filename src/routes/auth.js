@@ -23,7 +23,8 @@ router.get('/logout', (req, res, next) => {
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - GET ' + req.url);
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - User logged out');
     req.flash('success_msg', 'You have successfully logged out!');
-    res.redirect('/auth/login');
+    res.locals.user = null;
+    res.render('welcome')
 })
 
 router.post('/login', (req, res, next) => {

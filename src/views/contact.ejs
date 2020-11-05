@@ -1,0 +1,23 @@
+<h1>Contact Form</h1>
+<%- include ('./partials/messages') %>
+<form action="/contact" method="POST">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" name="email" value="<%= typeof email != 'undefined' ? email : '' %>">
+    </div>
+    <div class="form-group">
+        <label for="firstname">First name</label>
+        <input type="firstname" class="form-control" name="firstname" value="<%= typeof firstname != 'undefined' ? firstname : '' %>">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last name</label>
+        <input type="lastname" class="form-control" name="lastname" value="<%= typeof lastname != 'undefined' ? lastname : '' %>">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea class="form-control" value="<%= typeof message != 'undefined' ? message : '' %>"></textarea>
+      </div>
+    <button type="submit" class="btn btn-primary btn-block">Send</button>
+    <a role="button" class="btn btn-danger btn-block" href="/">Cancel</a>
+</form>
+<p>Don't have an Account? No problem! <a href="/auth/register">Register</a></p>
