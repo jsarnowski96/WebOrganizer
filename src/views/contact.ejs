@@ -18,6 +18,10 @@
         <textarea class="form-control" value="<%= typeof message != 'undefined' ? message : '' %>"></textarea>
       </div>
     <button type="submit" class="btn btn-primary btn-block">Send</button>
-    <a role="button" class="btn btn-danger btn-block" href="/">Cancel</a>
+    <% if(!user) { %>
+        <a role="button" class="btn btn-danger btn-block" href="/">Cancel</a>
+    <% } else { %>
+        <a role="button" class="btn btn-danger btn-block" href="/dashboard">Cancel</a>
+    <% } %>
 </form>
 <p>Don't have an Account? No problem! <a href="/auth/register">Register</a></p>

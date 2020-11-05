@@ -9,13 +9,13 @@ const router = express.Router();
 router.get('/login', (req, res, next) => {
     res.status(200);
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - GET ' + req.url);
-    res.render('login');
+    res.render('login', {active: 'login'});
 });
 
 router.get('/register', (req, res, next) => {
     res.status(200);
     console.log(req.connection.remoteAddress.replace('::ffff:', '').replace('::ffff:', '') + ' - GET ' + req.url);
-    res.render('register');
+    res.render('register', {active: 'register'});
 });
 
 router.get('/logout', (req, res, next) => {
@@ -24,7 +24,7 @@ router.get('/logout', (req, res, next) => {
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - User logged out');
     req.flash('success_msg', 'You have successfully logged out!');
     res.locals.user = null;
-    res.render('welcome')
+    res.render('welcome', {active : 'home'})
 })
 
 router.post('/login', (req, res, next) => {
@@ -59,15 +59,15 @@ router.post('/register', (req, res, next) => {
             lastname: lastname,
             email: email,
             password: password,
-            password_confirm: password_confirm
+            password_confirm: password_confirm,
+            active: 'register'
         });
     } else {
         Profile.findOne({email : email}).exec((err, profile) => {
             console.log(profile);
             if(profile) {
                 errors.push({msg: 'There is already an account using this email'});
-                res.render('register', {errors, login, firstname, lastname, email, password, password_confirm});
-                //res.render(res, errors, login, firstname, lastname, email, password, password_confirm);
+                res.render('register', {errors, login, firstname, lastname, email, password, password_confirm, active: 'register'});
             } else {
                 const newProfile = new Profile({
                     login: login,
