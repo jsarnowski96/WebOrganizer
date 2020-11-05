@@ -6,7 +6,6 @@ require('./src/config/passport')(passport);
 const session = require('express-session');
 const flash = require('connect-flash');
 const expressEjsLayout = require('express-ejs-layouts');
-//const { I18n } = require('i18n');
 
 const app = express();
 
@@ -24,25 +23,10 @@ app.set('view engine', 'ejs');
 app.use(expressEjsLayout);
 app.use(express.urlencoded({extended : false}));
 
-// const i18n = new I18n({
-//     locales: ['en', 'pl'],
-//     cookie: 'locale',
-//     directory: path.join(__dirname, '/src/locales')
-// });
-
-// i18n.configure({
-//     staticCatalog: {
-//         en: require('./src/locales/en.json'),
-//         pl: require('./src/locales/pl.json')
-//     },
-//     defaultLocale: 'en'
-// });
-
-// app.use(i18n.init);
-
 // Basic key routes
 const indexRoutes = require('./src/routes/index');
 const authRoutes = require('./src/routes/auth');
+const dashboardRoutes = require('./src/routes/dashboard');
 const { waitForDebugger } = require('inspector');
 const { render } = require('ejs');
 
@@ -65,17 +49,21 @@ app.use((req, res, next) => {
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     res.locals.user = req.user;
-    //res.locals.active = 'home';
 next();
 })
 
 // Routing & redirections
 app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
+app.use('/dashboard', dashboardRoutes);
 
 app.all('*', (req, res, next) => {
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' - Bad Request of url ' + req.url);
-    res.status(400).redirect('/auth/login');
+    if(!req.isAuthenticated()) {
+        res.status(400).redirect('/');
+    } else {
+        res.status(400).redirect('/dashboard');
+    }
     throw new Error("Bad Request");
 })
 

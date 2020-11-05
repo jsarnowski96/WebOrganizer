@@ -7,12 +7,5 @@ module.exports = {
         req.flash('error_msg', "Please login to view this resource");
         console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Access denied');
         res.redirect('/auth/login');
-    },
-
-    specialNavbar: function(req, res, next) {
-        if(req.isAuthenticated()) {
-            
-        }
-
     }
 }
