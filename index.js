@@ -29,12 +29,13 @@ const authRoutes = require('./src/routes/auth');
 const dashboardRoutes = require('./src/routes/dashboard');
 const { waitForDebugger } = require('inspector');
 const { render } = require('ejs');
+const { profile } = require('console');
 
 app.use(express.static(path.join(__dirname, 'src')));
 app.set('views', path.join(__dirname, '/src/views'));
 
 app.use(session({
-    secret: 'secret',
+    secret: "weborg",
     resave: true,
     saveUninitialized: true
 }));

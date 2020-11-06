@@ -19,7 +19,7 @@ router.get('/note/create', ensureAuthenticated, (req, res, next) => {
 
 router.post('/note/create', ensureAuthenticated, (req, res, next) => {
     res.status(200);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - POST ' + req.url);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     const {title, body} = req.body;
     let errors = [];
     console.log('Title: ' + title + ' Body: ' + body);
@@ -37,15 +37,16 @@ router.post('/note/create', ensureAuthenticated, (req, res, next) => {
     } else {
         const newNote = new Note({
             title: title,
-            body: body
+            body: body,
+            profile_id: res.locals.user.id
         });
         newNote.save()
         .then((value) => {
             console.log(value);
             req.flash('success_msg', 'You have successfully added new note!');
-            res.redirect('/');
+            res.redirect('/dashboard');
             res.status(301);
-            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - 301 - redirection to ' + res.url)
+            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url)
         })
         .catch(value => console.log(value));
     }

@@ -1,15 +1,6 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-const SchemaObjectId = Schema.Types.ObjectId;
-const ObjectId = mongoose.Types.ObjectId;
-
-const ProfileSchema = new mongoose.Schema({
-    _id: {
-        type: SchemaObjectId,
-        default: () => new ObjectId()
-    },
-    
+const ProfileSchema = new mongoose.Schema({    
     login :{
         type: String,
         required: true

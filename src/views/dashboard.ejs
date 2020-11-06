@@ -1,5 +1,10 @@
-<h1>Dashboard</h1><hr>
-<p>Welcome, <%= user.login %></p>
-<form action="/auth/logout">
-    <button class="btn btn-danger btn-block">Logout</button>
-</form>
+<%- include ('./partials/messages') %>
+<section>
+    <h1>Dashboard</h1><hr>
+    <p>Welcome back, <%= user.login %></p>
+    <a href="/dashboard/note/create" role="button" class="btn btn-primary">Create new note</a>
+    <form action="/auth/logout">
+        <button class="btn btn-danger">Logout</button>
+    </form>
+</section>
+    

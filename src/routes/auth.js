@@ -20,15 +20,15 @@ router.get('/register', (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
     req.logout();
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - GET ' + req.url);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - User logged out');
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url + '  - User ' + req.user + ' logged out');
     req.flash('success_msg', 'You have successfully logged out!');
     res.locals.user = null;
     res.render('welcome', {active : 'home'})
 })
 
 router.post('/login', (req, res, next) => {
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - POST ' + req.url);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/auth/login',
@@ -38,7 +38,7 @@ router.post('/login', (req, res, next) => {
 
 router.post('/register', (req, res, next) => {
     res.status(200);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - POST ' + req.url);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     const {login, firstname, lastname, email, password, password_confirm} = req.body;
     let errors = [];
     console.log('Login: ' + login + ' Firstname: ' + firstname + ' Lastname: ' + lastname + ' Email: ' + email + ' Password: ' + password);
@@ -88,7 +88,7 @@ router.post('/register', (req, res, next) => {
                             req.flash('success_msg', 'You have successfully registered!');
                             res.redirect('/auth/login');
                             res.status(301);
-                            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - 301 - redirection to ' + res.url)
+                            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url)
                         })
                         .catch(value => console.log(value));
                     }))

@@ -1,10 +1,8 @@
 const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
-const Profile = require('./profile');
 
 const Schema = mongoose.Schema;
 const SchemaObjectId = Schema.Types.ObjectId;
-//const ObjectId = mongoose.Types.ObjectId;
 
 const NoteSchema = new mongoose.Schema({
     title: {
