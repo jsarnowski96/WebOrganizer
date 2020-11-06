@@ -10,15 +10,15 @@
                 var cancelBtn = $('<button type="button" class="btn btn-warning">Cancel</button>');            
                 $("form").append(saveBtn);
                 $("form").append(cancelBtn);
-
-                $(cancelBtn).on('click', function() {
+            }
+            $(cancelBtn).on('click', function() {
                     i = 0;
                     $('fieldset[name="form-control-fieldset"]').attr("disabled", true);
                     $('button[name="edit"]').removeAttr("disabled");
                     $(cancelBtn).remove();
                     $(saveBtn).remove();
-                });
-            }
+                    $("form")[0].reset();
+            });
         });
     });
 </script>

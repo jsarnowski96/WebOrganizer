@@ -3,7 +3,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse mr-auto" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <% if(active === 'home') { %>
             <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
@@ -38,9 +38,9 @@
                 <a class="nav-link" href="/dashboard">Dashboard</a>
             <% } %>
             <% if(active === 'profile') { %>
-                <a class="nav-link active" href="/">Profile <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="/profile">Profile <span class="sr-only">(current)</span></a>
             <% } else { %>
-                <a class="nav-link" href="/">Profile</a>
+                <a class="nav-link" href="/profile">Profile</a>
             <% } %>
             <a class="nav-link" href="/auth/logout">Logout</a>
         <% } %>

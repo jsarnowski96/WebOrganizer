@@ -1,3 +1,4 @@
+const {ensureAuthenticated} = require('../config/auth.js');
 const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
@@ -18,10 +19,10 @@ router.get('/register', (req, res, next) => {
     res.render('register', {active: 'register'});
 });
 
-router.get('/logout', (req, res, next) => {
-    req.logout();
+router.get('/logout', ensureAuthenticated, (req, res, next) => {
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url + '  - User ' + req.user + ' logged out');
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url + '  - User ' + req.user.login + ' logged out');
+    req.logout();
     req.flash('success_msg', 'You have successfully logged out!');
     res.locals.user = null;
     res.render('welcome', {active : 'home'})

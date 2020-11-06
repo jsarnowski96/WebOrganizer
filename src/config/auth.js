@@ -5,7 +5,6 @@ module.exports = {
             return next();
         }
         req.flash('error_msg', "Please login to view this resource");
-        console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Access denied');
-        res.redirect('/auth/login');
+        res.redirect('/');
     }
 }
