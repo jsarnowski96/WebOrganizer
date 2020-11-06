@@ -3,9 +3,10 @@ const express = require('express');
 const router = express.Router();
 
 const Note = require('../models/note');
+const Profile = require('../models/profile.js');
 
-router.get('/note/read/:id', (req, res, next) => {
-
+router.get('/', ensureAuthenticated, (req, res, next) => {
+    Profile.find
 });
 
 router.get('/note/create', ensureAuthenticated, (req, res, next) => {
