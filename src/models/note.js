@@ -2,6 +2,10 @@ const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 const Profile = require('./profile');
 
+const Schema = mongoose.Schema;
+const SchemaObjectId = Schema.Types.ObjectId;
+//const ObjectId = mongoose.Types.ObjectId;
+
 const NoteSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -14,8 +18,8 @@ const NoteSchema = new mongoose.Schema({
     },
 
     profile_id: {
-        type: ObjectId,
-        default: Profile.ObjectId
+        type: SchemaObjectId,
+        ref: 'Profile'
     },
 
     created_at: {
