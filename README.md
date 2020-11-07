@@ -12,7 +12,7 @@ MEN stack web application designed to help you organize your day-to-day routine.
 [Licence](#licence)<br /><br />
 
 ## Public test environment
-You can check out how the application works at the following address:<br /><br />
+You can check out the application at the following address:<br /><br />
 http://78.46.150.191:8081/<br /><br />
 
 ## Description
