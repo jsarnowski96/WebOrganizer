@@ -60,7 +60,7 @@ DB_URL = <atlas_cluster_url>
 
 Replace all placeholders with your config.<br />
 
-You don't have to manually create collections in the target database - they will be added automatically along with the first item.<br /><br />
+You don't have to manually create collections in the target database - they will be added automatically along with the first items.<br /><br />
 
 ## TODO
 - [ ] frontend polishing<br />
