@@ -28,7 +28,7 @@ Web Organizer consists of several types of files performing different tasks. We 
 
 ## Current features
 - Create, read, update or delete your notes via intuitive user interface<br />
-- Modify your personal information<br/>
+- Modify your personal information<br/><br />
 
 ### Setting up local instance
 In order to test the application locally, you have to create `.env` file first in the root directory of the project (`/`).
@@ -40,9 +40,9 @@ DB_NAME = <database>
 DB_URL = <atlas_cluster_url>
 ```
 
-You don't have to manually create collections in the database - they will be added automatically with the first item.
+You don't have to manually create collections in the database - they will be added automatically with the first item.<br />
 
-## Licence
+### Licence
 Web Organizer is being distributed under GPL-3.0 licence.<br />
 https://www.gnu.org/licenses/gpl-3.0.html
 
