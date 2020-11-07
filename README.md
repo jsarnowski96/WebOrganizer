@@ -44,10 +44,10 @@ http://78.46.150.191:3300/<br /><br />
 
 ### Setting up local instance
 First of all, run the following command:<br />
-`git clone https://github.com/jsarnowski96/WebOrganizer`<br />
+`git clone https://github.com/jsarnowski96/WebOrganizer`<br /><br />
 
 After cloning the repository, install dependencies:<br />
-`npm install`<br />
+`npm install`<br /><br />
 
 In order to test the application locally, you have to create `.env` file first in the root directory of the project (`/`).
 Next, add the following lines to the file:
