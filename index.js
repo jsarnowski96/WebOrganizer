@@ -58,6 +58,10 @@ app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
 app.use('/dashboard', dashboardRoutes);
 
+app.get('/favicon.ico', (req, res, next) => {
+    res.status(404);
+}) 
+
 app.all('*', (req, res, next) => {
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' - Bad Request of url ' + req.url);
     if(!req.isAuthenticated()) {
