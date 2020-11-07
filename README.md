@@ -47,7 +47,7 @@ DB_NAME = <database>
 DB_URL = <atlas_cluster_url>
 ```
 
-You don't have to manually create collections in the database - they will be added automatically with the first item.<br /><br />
+You don't have to manually create collections in the database - they will be added automatically along with the first item.<br /><br />
 
 ## TODO
 - [ ] frontend polishing<br />
