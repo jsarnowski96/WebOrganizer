@@ -1,10 +1,37 @@
-<%- include ('./partials/messages') %>
 <section>
-    <h1>Dashboard</h1><hr>
-    <p>Welcome back, <%= user.login %></p>
-    <a href="/dashboard/note/create" role="button" class="btn btn-primary">Create new note</a>
-    <form action="/auth/logout">
-        <button class="btn btn-danger">Logout</button>
-    </form>
+    <div class="container col-12 col-sm-6 col-lg-3 text-center justify-content-center">
+        <hr><h1>Dashboard</h1><hr>
+        <p>Welcome back, <a href="/profile"><%= user.login %></a>!</p>
+        <% if(notes.length > 0) { %>
+            <a href="/dashboard/note/create" role="button" class="btn btn-primary col-6">Create new note</a>
+        <% } %>
+        <%- include ('./partials/messages') %>
+    </div>
+</section>
+<section>
+    <div class="container col-12 col-sm-6 col-lg-3 text-center justify-content-center">
+        <% var i; %>
+        <% if(notes.length === 0) { %>
+            <div class="jumbotron jumbotron-fluid bg-white" style="margin-top: 10vh;">
+                <div class="container">
+                  <h1 class="display-4">Ooops!</h1>
+                  <p class="lead">You have no notes available. Try to add some first:</p>
+                  <a href="/dashboard/note/create" role="button" class="btn btn-primary col-6">Create new note</a>
+                </div>
+            </div>
+        <% } %>
+        <% for(i = 0; i < notes.length; i++) { %>
+            <div class="card" style="margin-top: 5vh;">
+                <div class="card-header">
+                    <%- notes[i].title %>
+                </div>                    
+                <div class="card-body">
+                    <hr><p class="card-text"><%- notes[i].body %></p><hr>
+                    <a href="/dashboard/note/read/<%- notes[i]._id %>" role="button" class="btn btn-success">Edit</a>
+                    <a href="/dashboard/note/delete/<%- notes[i]._id %>" data-method="delete" role="button" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        <% } %>
+    </div>
 </section>
     

@@ -2,20 +2,12 @@ const {ensureAuthenticated} = require('../config/auth.js');
 const express = require('express');
 const router = express.Router();
 const Profile = require('../models/profile');
+const Note = require('../models/note');
 
 router.get('/', (req, res, next) => {
     res.status(200);
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     res.render('welcome', {active: 'home'});
-});
-
-router.get('/dashboard', ensureAuthenticated, (req, res, next) => {
-    res.status(200);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
-    res.render('dashboard', {
-        user: req.user,
-        active: 'dashboard'
-    });
 });
 
 router.get('/profile', ensureAuthenticated, (req, res, next) => {
@@ -27,10 +19,9 @@ router.get('/profile', ensureAuthenticated, (req, res, next) => {
 router.post('/profile', ensureAuthenticated, (req, res, next) => {
     res.status(200);
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
-    Profile.findById(req.user.id, function(err, profile) {
+    Profile.findById(req.user.id, function(err, user) {
         const {login, firstname, lastname, email} = req.body;
         let errors = [];
-        let user = req.user;
         if(!login || !firstname || !lastname || !email) {
             errors.push({msg: "One or more fields are empty"});
         }
@@ -57,10 +48,9 @@ router.post('/profile', ensureAuthenticated, (req, res, next) => {
                 res.status(301);
                 console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url)
             })
-            .catch(value => console.log(value));
+            .catch(err);
         }
     });
-    
 })
 
 router.get('/about', (req, res, next) => {

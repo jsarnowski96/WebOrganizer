@@ -3,10 +3,22 @@ const express = require('express');
 const router = express.Router();
 
 const Note = require('../models/note');
-const Profile = require('../models/profile.js');
 
 router.get('/', ensureAuthenticated, (req, res, next) => {
-    Profile.find
+    res.status(200);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    let user = req.user;
+    Note.find({profile_id: user.id}, function(err, notes) {
+        try {
+            res.render('dashboard', {
+                notes: notes,
+                user: user,
+                active: 'dashboard'
+            });
+        } catch(err) {
+            console.log('Error during retrieving user\'s notes: ' + err);
+        }
+    });
 });
 
 router.get('/note/create', ensureAuthenticated, (req, res, next) => {
@@ -15,6 +27,94 @@ router.get('/note/create', ensureAuthenticated, (req, res, next) => {
     res.render('newNote', {
         user: req.user,
         active: 'dashboard'
+    });
+});
+
+router.get('/note/read/:id', ensureAuthenticated, (req, res, next) => {
+    res.status(200);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    Note.findById(req.params.id, function(err, note) {
+            let errors = [];
+            if(!note) {
+                errors.push({msg: "Note with this ID does not exist"});
+            }
+            if(errors.length > 0) {
+                res.render('dashboard', {errors: errors, active: 'dashboard'});
+            } else {
+                try {
+                    let subject, content;
+                    subject = note.title;
+                    content = note.body;
+    
+                    res.render('note', {
+                        subject,
+                        content,
+                        id: req.params.id,
+                        active: 'dashboard'
+                    });
+                } catch(error) {
+                    console.log('Error during obtaining record for note ID ' + req.params.id);
+                    console.log(error);
+                }
+            }
+
+        });
+})  
+
+router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
+    res.status(200);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    Note.findById(req.params.id, function(err, note) {
+        const {title, body} = req.body;
+        let errors = [];
+        if(!title || !body) {
+            errors.push({msg: "One or more fields are empty"});
+        }
+        if(errors.length > 0) {
+            res.render('dashboard', {
+                errors: errors,
+                title: title,
+                body: body,
+                active: 'dashboard'
+            });
+        } else {
+            note.title = title;
+            note.body = body;
+            note.save()
+            .then((value) => {
+                console.log(value);
+                req.flash('success_msg', 'You have successfully modified your note!');
+                res.redirect('/dashboard');
+                res.status(301);
+                console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url)
+            })
+            .catch(err);
+        }
+    });
+})
+
+router.get('/note/delete/:id', (req, res, next) => {
+    res.status(200);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    const id = req.params.id;
+    Note.findByIdAndDelete({_id: id}, function(err, note) {
+        let errors = [];
+        if(!id) {
+            errors.push({msg: 'You have not provided the ID of the note marked for deletion'});
+        }
+        if(errors.length > 0) {
+            res.render('dashboard', {
+                errors: errors,
+                active: 'dashboard'
+            });
+        } else {
+            try {
+                console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Record ID ' + id + ' deleted successfully');
+                res.redirect('/dashboard');
+            } catch(err) {
+                console.log('Error during deletion of user\'s note with ID' + id + ': ' + err);
+            }
+        }
     });
 });
 
