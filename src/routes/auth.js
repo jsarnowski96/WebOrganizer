@@ -19,6 +19,73 @@ router.get('/register', (req, res, next) => {
     res.render('register', {active: 'register'});
 });
 
+router.get('/reset', (req, res, next) => {
+    res.status(200);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '').replace('::ffff:', '') + ' - GET ' + req.url);
+    res.render('reset', {active: 'login'});
+});
+
+router.post('/reset', (req, res, next) => {
+    async.waterfall([
+        function(done) {
+          crypto.randomBytes(20, function(err, buf) {
+            var token = buf.toString('hex');
+            done(err, token);
+          });
+        },
+        function(token, done) {
+          Profile.findOne({ email: req.body.email, login: req.body.login }, function(err, user) {
+            if (!user) {
+              req.flash('error', 'No account with that email address exists.');
+              console.log(req.connection.remoteAddress.replace('::ffff:', '').replace('::ffff:', '') + ' - Password reset request for non-existing account detected');
+              return res.redirect('/reset');
+            }
+    
+            user.resetPasswordToken = token;
+            user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    
+            user.save(function(err) {
+              done(err, token, user);
+            });
+          });
+        },
+        function(token, user, done) {
+          var smtpTransport = nodemailer.createTransport('SMTP', {
+            service: 'SendGrid',
+            auth: {
+              user: process.env.MAIL_USER,
+              pass: process.env.MAIL_PASS
+            }
+          });
+          var mailOptions = {
+            to: user.email,
+            from: 'reset_pwd@uroboros',
+            subject: 'Password Reset',
+            text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+              'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+              'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+              'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+          };
+          smtpTransport.sendMail(mailOptions, function(err) {
+            console.log(req.connection.remoteAddress.replace('::ffff:', '').replace('::ffff:', '') + ' - Reset password link sent to ' + user.email);
+            req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+            done(err, 'done');
+          });
+        }
+      ], function(err) {
+        if (err) return next(err);
+        res.redirect('/reset');
+      });
+});
+
+router.get('/reset/:token', (req, res, next) => {
+
+});
+
+router.post('/reset/:token', (req, res, next) => {
+    
+})
+
 router.get('/logout', ensureAuthenticated, (req, res, next) => {
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url + '  - User ' + req.user.login + ' logged out');
