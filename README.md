@@ -5,7 +5,7 @@ MEN stack web application designed to help you organize your day-to-day routine.
 [Description](#description)<br />
 [Architecture](#architecture)<br />
 [Technologies](#technologies)<br />
-[Public test environment](#public-test-environment)<br />
+[Public tests environment](#public-tests-environment)<br />
 [File structure](#file-structure)<br />
 [Current features](#current-features)<br />
 [TODO](#todo)<br />
@@ -24,7 +24,7 @@ Web Organizer consists of several types of files performing different tasks. We 
 - ExpressJS<br />
 - Mongoose<br /><br />
 
-## Public test environment
+## Public tests environment
 You can check out the application at the following address:<br /><br />
 http://78.46.150.191:3300/<br /><br />
 
