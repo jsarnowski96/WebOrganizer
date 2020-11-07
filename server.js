@@ -3,7 +3,10 @@ const httpProxy = require('http-proxy');
 const path = require('path');
 const app = require('./index');
 
-httpProxy.createProxyServer({target:'http://localhost:3300'}).listen(8081);
+const dotenv = require('dotenv');
+dotenv.config();
+
+httpProxy.createProxyServer({target:process.env.SERVER_URL}).listen(process.env.SERVER_PROXY);
 
 async function server_init() {
     const port = process.env.PORT || 3300;
