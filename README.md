@@ -58,6 +58,8 @@ DB_NAME = <database>
 DB_URL = <atlas_cluster_url>
 ```
 
+And replace the placeholders with your data.<br />
+
 You don't have to manually create collections in the target database - they will be added automatically along with the first item.<br /><br />
 
 ## TODO
