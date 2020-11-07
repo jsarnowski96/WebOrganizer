@@ -4,6 +4,7 @@ MEN stack web application designed to help you organize your day-to-day routine.
 ## Table of contents
 [Description](#description)<br />
 [Architecture](#architecture)<br />
+[Technologies](#technologies)<br />
 [File structure](#file-structure)<br />
 [Current features](#current-features)<br />
 [Licence](#licence)<br />
@@ -15,6 +16,11 @@ Web Organizer allows you to add and modify notes with a simple title-body struct
 Web Organizer consists of several types of files performing different tasks. We can distinguish two basic types:
 - `.ejs` files, served as a frontend
 - `.js` files, performing most of the tasks on the backend
+
+## Technologies
+- NodeJS<br />
+- ExpressJS<br />
+- Mongoose<br />
 
 ## File structure
 - `/`: root directory containing server/app configuration files and environmental variables<br />
