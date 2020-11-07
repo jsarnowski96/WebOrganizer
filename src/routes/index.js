@@ -75,7 +75,7 @@ router.post('/contact', (req, res, next) => {
         port: 465,
         secure: true,
         logger: true,
-        debug: true,
+        //debug: true,
         auth: {
             user: process.env.MAIL_USER,
             pass: process.env.MAIL_PASS
