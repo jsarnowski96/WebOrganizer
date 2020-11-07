@@ -7,6 +7,7 @@ MEN stack web application designed to help you organize your day-to-day routine.
 [Technologies](#technologies)<br />
 [File structure](#file-structure)<br />
 [Current features](#current-features)<br />
+[TODO](#todo)<br />
 [Licence](#licence)<br />
 
 ## Description
@@ -47,6 +48,12 @@ DB_URL = <atlas_cluster_url>
 ```
 
 You don't have to manually create collections in the database - they will be added automatically with the first item.<br />
+
+## TODO
+- [ ] frontend polishing<br />
+- [ ] `About` page<br />
+- [ ] Contact form handler<br />
+- [ ] Expanding dashboard features (sorting/ordering, note priority, deadline, etc.)<br />
 
 ### Licence
 Web Organizer is being distributed under GPL-3.0 licence.<br />
