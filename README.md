@@ -5,7 +5,7 @@ MEN stack web application designed to help you organize your day-to-day routine.
 [Description](#description)<br />
 [Architecture](#architecture)<br />
 [Technologies](#technologies)<br />
-[Public test environment](#public-test-environment)<br />
+[Public tests environment](#public-tests-environment)<br />
 [File structure](#file-structure)<br />
 [Current features](#current-features)<br />
 [TODO](#todo)<br />
@@ -24,9 +24,9 @@ Web Organizer consists of several types of files performing different tasks. We 
 - ExpressJS<br />
 - Mongoose<br /><br />
 
-## Public test environment
+## Public tests environment
 You can check out the application at the following address:<br /><br />
-http://78.46.150.191:8081/<br /><br />
+http://78.46.150.191:3300/<br /><br />
 
 ## File structure
 - `/`: root directory containing server/app configuration files and environmental variables<br />
@@ -43,7 +43,13 @@ http://78.46.150.191:8081/<br /><br />
 - Modify your personal information<br/><br /><br />
 
 ### Setting up local instance
-In order to test the application locally, you have to create `.env` file first in the root directory of the project (`/`).
+First of all, run the following command:<br />
+`git clone https://github.com/jsarnowski96/WebOrganizer`<br /><br />
+
+After cloning the repository, install dependencies:<br />
+`npm install`<br /><br />
+
+In order to test the application locally, you have to create `.env` file first in the root directory of the project (`/`).<br />
 Next, add the following lines to the file:
 ```
 DB_USERNAME = <username>
@@ -52,7 +58,9 @@ DB_NAME = <database>
 DB_URL = <atlas_cluster_url>
 ```
 
-You don't have to manually create collections in the database - they will be added automatically along with the first item.<br /><br />
+Replace all placeholders with your config.<br />
+
+You don't have to manually create collections in the target database - they will be added automatically along with the first items.<br /><br />
 
 ## TODO
 - [ ] frontend polishing<br />
