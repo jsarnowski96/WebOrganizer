@@ -26,7 +26,7 @@ Web Organizer consists of several types of files performing different tasks. We 
 
 ## Public test environment
 You can check out the application at the following address:<br /><br />
-http://78.46.150.191:8081/<br /><br />
+http://78.46.150.191:3300/<br /><br />
 
 ## File structure
 - `/`: root directory containing server/app configuration files and environmental variables<br />
