@@ -2,18 +2,14 @@
 MEN stack web application designed to help you organize your day-to-day routine.<br />
 
 ## Table of contents
-[Public test environment](#public-test-environment)<br />
 [Description](#description)<br />
 [Architecture](#architecture)<br />
 [Technologies](#technologies)<br />
+[Public test environment](#public-test-environment)<br />
 [File structure](#file-structure)<br />
 [Current features](#current-features)<br />
 [TODO](#todo)<br />
 [Licence](#licence)<br /><br />
-
-## Public test environment
-You can check out the application at the following address:<br /><br />
-http://78.46.150.191:8081/<br /><br />
 
 ## Description
 Web Organizer allows you to add and modify notes with a simple title-body structure. Starting from day 1 the app provides a set of very basic features, however I will be successively expanding them.<br/><br />
@@ -27,6 +23,10 @@ Web Organizer consists of several types of files performing different tasks. We 
 - NodeJS<br />
 - ExpressJS<br />
 - Mongoose<br /><br />
+
+## Public test environment
+You can check out the application at the following address:<br /><br />
+http://78.46.150.191:8081/<br /><br />
 
 ## File structure
 - `/`: root directory containing server/app configuration files and environmental variables<br />
