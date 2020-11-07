@@ -49,7 +49,7 @@ First of all, run the following command:<br />
 After cloning the repository, install dependencies:<br />
 `npm install`<br /><br />
 
-In order to test the application locally, you have to create `.env` file first in the root directory of the project (`/`).
+In order to test the application locally, you have to create `.env` file first in the root directory of the project (`/`).<br />
 Next, add the following lines to the file:
 ```
 DB_USERNAME = <username>
