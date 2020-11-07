@@ -1,5 +1,5 @@
 # Web Organizer
-MERN stack web application designed to help you organize your day-to-day routine.
+MEN stack web application designed to help you organize your day-to-day routine.
 
 ## Table of contents
 [Description](#description)<br />
