@@ -9,7 +9,7 @@ MERN stack web application designed to help you organize your day-to-day routine
 [Licence](#licence)<br />
 
 ## Description
-Web Organizer allows you to add and modify notes with a simple title-body structure. Starting from day 1 the app provides a set of very basic features, however I will be successively expanding it.
+Web Organizer allows you to add and modify notes with a simple title-body structure. Starting from day 1 the app provides a set of very basic features, however I will be successively expanding them.
 
 ## Architecture
 Web Organizer consists of several types of files performing different tasks. We can distinguish two basic types:
