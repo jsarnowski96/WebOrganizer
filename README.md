@@ -2,6 +2,7 @@
 MEN stack web application designed to help you organize your day-to-day routine.<br />
 
 ## Table of contents
+[Public test environment]#(public-test-environment)<br />
 [Description](#description)<br />
 [Architecture](#architecture)<br />
 [Technologies](#technologies)<br />
@@ -9,6 +10,10 @@ MEN stack web application designed to help you organize your day-to-day routine.
 [Current features](#current-features)<br />
 [TODO](#todo)<br />
 [Licence](#licence)<br /><br />
+
+## Public test environment
+You can check out how the application works at the following address:<br />
+http://78.46.150.191:8081/
 
 ## Description
 Web Organizer allows you to add and modify notes with a simple title-body structure. Starting from day 1 the app provides a set of very basic features, however I will be successively expanding them.<br/><br />
