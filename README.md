@@ -12,8 +12,8 @@ MEN stack web application designed to help you organize your day-to-day routine.
 [Licence](#licence)<br /><br />
 
 ## Public test environment
-You can check out how the application works at the following address:<br />
-http://78.46.150.191:8081/
+You can check out how the application works at the following address:<br /><br />
+http://78.46.150.191:8081/<br /><br />
 
 ## Description
 Web Organizer allows you to add and modify notes with a simple title-body structure. Starting from day 1 the app provides a set of very basic features, however I will be successively expanding them.<br/><br />
