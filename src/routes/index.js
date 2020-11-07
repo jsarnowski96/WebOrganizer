@@ -1,6 +1,7 @@
 const {ensureAuthenticated} = require('../config/auth.js');
 const express = require('express');
 const router = express.Router();
+const nodemailer = require('nodemailer');
 const Profile = require('../models/profile');
 
 router.get('/', (req, res, next) => {
@@ -65,7 +66,42 @@ router.get('/contact', (req, res, next) => {
 });
 
 router.post('/contact', (req, res, next) => {
-    console.log('Contact form sent');
+    res.status(200);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    const {subject, message, firstname, lastname, email} = req.body;
+    const errors = []
+    const smtpTrans = nodemailer.createTransport({
+        host: 'mail.linux.pl',
+        port: 465,
+        secure: true,
+        logger: true,
+        debug: true,
+        auth: {
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASS
+        }
+    });
+
+    const mailOpts = {
+        from: email,
+        to: process.env.MAIL_USER,
+        subject: subject,
+        text: `First name: ${firstname}\nLast name: ${lastname}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`
+    };
+
+    smtpTrans.sendMail(mailOpts, (err, response) => {
+        if(err) {
+            errors.push({msg: 'There was an issue with sending your contact form. Please try again.'});
+            res.status(500);
+            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Error with sending contact form: ' + err);
+            res.render('contact', {errors: errors, active: 'contact'});
+        } else {
+            res.status(200);
+            req.flash('success_msg', 'Contact form sent!');
+            res.redirect('/contact');
+            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Contact form sent successfully from ' + email);
+        }
+    });
 });
 
 module.exports = router;
