@@ -43,6 +43,12 @@ http://78.46.150.191:3300/<br /><br />
 - Modify your personal information<br/><br /><br />
 
 ### Setting up local instance
+First of all, run the following command:<br />
+`git clone https://github.com/jsarnowski96/WebOrganizer`<br />
+
+After cloning the repository, install dependencies:<br />
+`npm install`<br />
+
 In order to test the application locally, you have to create `.env` file first in the root directory of the project (`/`).
 Next, add the following lines to the file:
 ```
@@ -52,7 +58,7 @@ DB_NAME = <database>
 DB_URL = <atlas_cluster_url>
 ```
 
-You don't have to manually create collections in the database - they will be added automatically along with the first item.<br /><br />
+You don't have to manually create collections in the target database - they will be added automatically along with the first item.<br /><br />
 
 ## TODO
 - [ ] frontend polishing<br />
