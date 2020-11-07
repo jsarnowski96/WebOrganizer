@@ -2,7 +2,7 @@
 MEN stack web application designed to help you organize your day-to-day routine.<br />
 
 ## Table of contents
-[Public test environment]#(public-test-environment)<br />
+[Public test environment](#public-test-environment)<br />
 [Description](#description)<br />
 [Architecture](#architecture)<br />
 [Technologies](#technologies)<br />
