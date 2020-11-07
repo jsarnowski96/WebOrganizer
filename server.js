@@ -1,7 +1,9 @@
 const http = require('http');
+const httpProxy = require('http-proxy');
 const path = require('path');
-const { I18n } = require('i18next');
 const app = require('./index');
+
+httpProxy.createProxyServer({target:'http://localhost:3300'}).listen(8081);
 
 async function server_init() {
     const port = process.env.PORT || 3300;
@@ -11,4 +13,3 @@ async function server_init() {
 }
 
 server_init();
-// mongo_connection().catch(console.error);
