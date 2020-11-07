@@ -2,7 +2,6 @@ const {ensureAuthenticated} = require('../config/auth.js');
 const express = require('express');
 const router = express.Router();
 const Profile = require('../models/profile');
-const Note = require('../models/note');
 
 router.get('/', (req, res, next) => {
     res.status(200);
@@ -67,6 +66,6 @@ router.get('/contact', (req, res, next) => {
 
 router.post('/contact', (req, res, next) => {
     console.log('Contact form sent');
-})
+});
 
 module.exports = router;
