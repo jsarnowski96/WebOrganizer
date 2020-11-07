@@ -1,7 +1,7 @@
 {
   "name": "weborganizer",
   "version": "1.0.0",
-  "description": "MERN stack web application designed to help you organize your day-to-day routine.",
+  "description": "MEN stack web application designed to help you organize your day-to-day routine.",
   "main": "index.js",
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -30,7 +30,7 @@
     "url": "git+https://github.com/jsarnowski96/WebOrganizer.git"
   },
   "keywords": [
-    "MERN",
+    "MEN",
     "API",
     "MongoDB",
     "NodeJS",
