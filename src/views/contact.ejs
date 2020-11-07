@@ -5,15 +5,27 @@
     <form action="/contact" method="POST">
         <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" class="form-control" name="email" value="<%= typeof email != 'undefined' ? email : '' %>">
+          <% if(!user) { %>
+            <input type="email" class="form-control" name="email" value="<%= typeof email != 'undefined' ? email : '' %>">
+          <% } else { %>
+            <input type="email" class="form-control" name="email" value="<%= user.email %>">
+          <% } %>
         </div>
         <div class="form-group">
             <label for="firstname">First name</label>
+            <% if(!user) { %>
             <input type="firstname" class="form-control" name="firstname" value="<%= typeof firstname != 'undefined' ? firstname : '' %>">
+            <% } else { %>
+              <input type="firstname" class="form-control" name="firstname" value="<%= user.firstname %>">
+              <% } %>
           </div>
           <div class="form-group">
             <label for="lastname">Last name</label>
+            <% if(!user) { %>
             <input type="lastname" class="form-control" name="lastname" value="<%= typeof lastname != 'undefined' ? lastname : '' %>">
+            <% } else { %>
+              <input type="lastname" class="form-control" name="lastname" value="<%= user.lastname %>">
+              <% } %>
           </div><br /><hr><br />
           <div class="form-group">
             <label for="subject">Subject</label>
