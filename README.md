@@ -5,7 +5,7 @@ MERN stack web application designed to help you organize your day-to-day routine
 [Description](#description)<br />
 [Architecture](#architecture)<br />
 [File structure](#file-structure)<br />
-[Current features](current-features)<br />
+[Current features](#current-features)<br />
 [Licence](#licence)<br />
 
 ## Description
