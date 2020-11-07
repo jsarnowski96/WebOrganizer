@@ -6,7 +6,7 @@ const Note = require('../models/note');
 
 router.get('/', ensureAuthenticated, (req, res, next) => {
     res.status(200);
-    console.log(req.headers['x-forwarded-for'] || req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     let user = req.user;
     Note.find({profile_id: user.id}, function(err, notes) {
         try {
@@ -23,7 +23,7 @@ router.get('/', ensureAuthenticated, (req, res, next) => {
 
 router.get('/note/create', ensureAuthenticated, (req, res, next) => {
     res.status(200);
-    console.log(req.headers['x-forwarded-for'] || req.connection.remoteAddress.replace('::ffff:', '') + ' -  ' + req.method + ' ' + req.url);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' -  ' + req.method + ' ' + req.url);
     res.render('newNote', {
         user: req.user,
         active: 'dashboard'
@@ -32,7 +32,7 @@ router.get('/note/create', ensureAuthenticated, (req, res, next) => {
 
 router.get('/note/read/:id', ensureAuthenticated, (req, res, next) => {
     res.status(200);
-    console.log(req.headers['x-forwarded-for'] || req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     Note.findById(req.params.id, function(err, note) {
             let errors = [];
             if(!note) {
@@ -63,7 +63,7 @@ router.get('/note/read/:id', ensureAuthenticated, (req, res, next) => {
 
 router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
     res.status(200);
-    console.log(req.headers['x-forwarded-for'] || req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     Note.findById(req.params.id, function(err, note) {
         const {title, body} = req.body;
         let errors = [];
@@ -86,7 +86,7 @@ router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
                 req.flash('success_msg', 'You have successfully modified your note!');
                 res.redirect('/dashboard');
                 res.status(301);
-                console.log(req.headers['x-forwarded-for'] || req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url)
+                console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url)
             })
             .catch(err);
         }
@@ -95,7 +95,7 @@ router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
 
 router.get('/note/delete/:id', (req, res, next) => {
     res.status(200);
-    console.log(req.headers['x-forwarded-for'] || req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     const id = req.params.id;
     Note.findByIdAndDelete({_id: id}, function(err, note) {
         let errors = [];
@@ -109,7 +109,7 @@ router.get('/note/delete/:id', (req, res, next) => {
             });
         } else {
             try {
-                console.log(req.headers['x-forwarded-for'] || req.connection.remoteAddress.replace('::ffff:', '') + ' - Record ID ' + id + ' deleted successfully');
+                console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Record ID ' + id + ' deleted successfully');
                 res.redirect('/dashboard');
             } catch(err) {
                 console.log('Error during deletion of user\'s note with ID' + id + ': ' + err);
@@ -120,7 +120,7 @@ router.get('/note/delete/:id', (req, res, next) => {
 
 router.post('/note/create', ensureAuthenticated, (req, res, next) => {
     res.status(200);
-    console.log(req.headers['x-forwarded-for'] || req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
+    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     const {title, body} = req.body;
     let errors = [];
     console.log('Title: ' + title + ' Body: ' + body);
@@ -147,7 +147,7 @@ router.post('/note/create', ensureAuthenticated, (req, res, next) => {
             req.flash('success_msg', 'You have successfully added new note!');
             res.redirect('/dashboard');
             res.status(301);
-            console.log(req.headers['x-forwarded-for'] || req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url)
+            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url)
         })
         .catch(value => console.log(value));
     }
