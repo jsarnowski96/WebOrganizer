@@ -40,7 +40,7 @@ DB_NAME = <database>
 DB_URL = <atlas_cluster_url>
 ```
 
-You don't have to manually create collection in the database - they will be added automatically when the specific schema is run for the first time.
+You don't have to manually create collections in the database - they will be added automatically when the specific schema is run for the first time.
 
 ## Licence
 Web Organizer is being distributed under GPL-3.0 licence.<br />
