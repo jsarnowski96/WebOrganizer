@@ -71,8 +71,8 @@ router.post('/contact', (req, res, next) => {
     const {subject, message, firstname, lastname, email} = req.body;
     const errors = []
     const smtpTrans = nodemailer.createTransport({
-        host: 'mail.linux.pl',
-        port: 465,
+        host: process.env.MAIL_HOST,
+        port: process.env.MAIL_PORT,
         secure: true,
         logger: true,
         //debug: true,
