@@ -55,7 +55,7 @@ Next, add the following lines to the file:
 PORT = <nodejs_server_port>
 DB_USERNAME = <username>
 DB_PASSWORD = <password>
-DB_NAME = <database>
+DB_NAME = <database_name>
 DB_URL = <atlas_cluster_url>
 MAIL_USER = <contact_mail>
 MAIL_PASS = <contact_mail_pass>
