@@ -71,8 +71,8 @@ You don't have to manually create collections in the target database - they will
 - [ ] frontend polishing<br />
 - [ ] `About` page<br />
 - [ ] Contact form handler<br />
-- [ ] Expanding dashboard features (sorting/ordering, note priority, deadline, etc.)<br /><br />
-- [ ] SSL Encryption
+- [ ] Expanding dashboard features (sorting/ordering, note priority, deadline, etc.)<br />
+- [ ] SSL Encryption<br /><br />
 
 ### Licence
 Web Organizer is being distributed under GPL-3.0 licence.<br />
