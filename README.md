@@ -52,10 +52,15 @@ After cloning the repository, install dependencies:<br />
 In order to test the application locally, you have to create `.env` file first in the root directory of the project (`/`).<br />
 Next, add the following lines to the file:
 ```
+PORT = <nodejs_server_port>
 DB_USERNAME = <username>
 DB_PASSWORD = <password>
 DB_NAME = <database>
 DB_URL = <atlas_cluster_url>
+MAIL_USER = <contact_mail>
+MAIL_PASS = <contact_mail_pass>
+MAIL_HOST = <mail_server_addr>
+MAIL_PORT = <mail_server_port>
 ```
 
 Replace all placeholders with your config.<br />
