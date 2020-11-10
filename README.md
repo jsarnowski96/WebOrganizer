@@ -17,9 +17,9 @@ Web Organizer allows you to add and modify notes with a simple title-body struct
 ## Architecture
 Web Organizer consists of several types of files performing different tasks. We can distinguish two basic types:
 - `.ejs` files, served as a frontend<br />
-- `.js` files, performing most of the tasks on the backend<br /><br />
+- `.js` files, performing most of the tasks on the backend<br />
 
-All frontend is rendered server-side.
+All frontend is rendered server-side.<br />
 
 ## Technologies
 - NodeJS<br />
