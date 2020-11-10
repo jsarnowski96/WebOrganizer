@@ -19,6 +19,8 @@ Web Organizer consists of several types of files performing different tasks. We 
 - `.ejs` files, served as a frontend<br />
 - `.js` files, performing most of the tasks on the backend<br /><br />
 
+All frontend is rendered server-side.
+
 ## Technologies
 - NodeJS<br />
 - ExpressJS<br />
