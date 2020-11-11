@@ -20,17 +20,8 @@ router.get('/', ensureAuthenticated, (req, res, next) => {
     });
 });
 
-router.get('/note/create', ensureAuthenticated, (req, res, next) => {
+router.get('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
     res.status(200);
-    res.render('newNote', {
-        user: req.user,
-        active: 'dashboard'
-    });
-});
-
-router.get('/note/read/:id', ensureAuthenticated, (req, res, next) => {
-    res.status(200);
-    
     Note.findById(req.params.id, function(err, note) {
             let errors = [];
             if(!note) {
@@ -143,6 +134,14 @@ router.post('/note/create', ensureAuthenticated, (req, res, next) => {
         })
         .catch(value => console.log(value));
     }
+});
+
+router.get('/note/create', ensureAuthenticated, (req, res, next) => {
+    res.status(200);
+    res.render('newNote', {
+        user: req.user,
+        active: 'dashboard'
+    });
 });
 
 module.exports = router;
