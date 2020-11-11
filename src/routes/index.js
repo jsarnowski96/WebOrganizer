@@ -3,22 +3,20 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const Profile = require('../models/profile');
+const morgan = require('morgan');
 
 router.get('/', (req, res, next) => {
     res.status(200);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     res.render('welcome', {active: 'home'});
 });
 
 router.get('/profile', ensureAuthenticated, (req, res, next) => {
     res.status(200);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     res.render('profile', {active: 'profile', user: req.user});
 })
 
 router.post('/profile', ensureAuthenticated, (req, res, next) => {
     res.status(200);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     Profile.findById(req.user.id, function(err, user) {
         const {login, firstname, lastname, email} = req.body;
         let errors = [];
@@ -46,7 +44,6 @@ router.post('/profile', ensureAuthenticated, (req, res, next) => {
                 req.flash('success_msg', 'You have successfully modified your data!');
                 res.redirect('/profile');
                 res.status(301);
-                console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url)
             })
             .catch(err);
         }
@@ -55,19 +52,16 @@ router.post('/profile', ensureAuthenticated, (req, res, next) => {
 
 router.get('/about', (req, res, next) => {
     res.status(200);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     res.render('about', {active: 'about'});
 });
 
 router.get('/contact', (req, res, next) => {
     res.status(200);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     res.render('contact', {active: 'contact'});
 });
 
 router.post('/contact', (req, res, next) => {
     res.status(200);
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' ' + req.url);
     const {subject, message, firstname, lastname, email} = req.body;
     const errors = []
     const smtpTrans = nodemailer.createTransport({
@@ -99,7 +93,7 @@ router.post('/contact', (req, res, next) => {
             res.status(200);
             req.flash('success_msg', 'Contact form sent!');
             res.redirect('/contact');
-            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Contact form sent successfully from ' + email);
+            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Contact form successfully sent from ' + email);
         }
     });
 });

@@ -5,6 +5,7 @@ const passport = require('passport');
 require('./src/config/passport')(passport);
 const session = require('express-session');
 const flash = require('connect-flash');
+const morgan = require('morgan');
 const expressEjsLayout = require('express-ejs-layouts');
 
 const app = express();
@@ -22,6 +23,8 @@ mongoose.connect('mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PAS
 app.set('view engine', 'ejs');
 app.use(expressEjsLayout);
 app.use(express.urlencoded({extended : false}));
+
+app.use(morgan('common'));
 
 // Basic key routes
 const indexRoutes = require('./src/routes/index');
@@ -63,7 +66,6 @@ app.get('/favicon.ico', (req, res, next) => {
 }) 
 
 app.all('*', (req, res, next) => {
-    console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - ' + req.method + ' - Bad Request of url ' + req.url);
     if(!req.isAuthenticated()) {
         res.status(400).redirect('/');
     } else {
