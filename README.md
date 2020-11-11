@@ -17,7 +17,9 @@ Web Organizer allows you to add and modify notes with a simple title-body struct
 ## Architecture
 Web Organizer consists of several types of files performing different tasks. We can distinguish two basic types:
 - `.ejs` files, served as a frontend<br />
-- `.js` files, performing most of the tasks on the backend<br /><br />
+- `.js` files, performing most of the tasks on the backend<br />
+
+All frontend is rendered server-side.<br />
 
 ## Technologies
 - NodeJS<br />
@@ -52,10 +54,15 @@ After cloning the repository, install dependencies:<br />
 In order to test the application locally, you have to create `.env` file first in the root directory of the project (`/`).<br />
 Next, add the following lines to the file:
 ```
+PORT = <nodejs_server_port>
 DB_USERNAME = <username>
 DB_PASSWORD = <password>
-DB_NAME = <database>
+DB_NAME = <database_name>
 DB_URL = <atlas_cluster_url>
+MAIL_USER = <contact_mail>
+MAIL_PASS = <contact_mail_pass>
+MAIL_HOST = <mail_server_addr>
+MAIL_PORT = <mail_server_port>
 ```
 
 Replace all placeholders with your config.<br />
@@ -66,8 +73,8 @@ You don't have to manually create collections in the target database - they will
 - [ ] frontend polishing<br />
 - [ ] `About` page<br />
 - [ ] Contact form handler<br />
-- [ ] Expanding dashboard features (sorting/ordering, note priority, deadline, etc.)<br /><br />
-- [ ] SSL Encryption
+- [ ] Expanding dashboard features (sorting/ordering, note priority, deadline, etc.)<br />
+- [ ] SSL Encryption<br /><br />
 
 ### Licence
 Web Organizer is being distributed under GPL-3.0 licence.<br />
