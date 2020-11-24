@@ -9,11 +9,11 @@ router.get('/', (req, res, next) => {
     res.status(200).render('welcome', {active: 'home'});
 });
 
-router.get('/user', ensureAuthenticated, (req, res, next) => {
+router.get('/profile', ensureAuthenticated, (req, res, next) => {
     res.status(200).render('profile', {active: 'profile', user: req.user});
 })
 
-router.post('/user', ensureAuthenticated, (req, res, next) => {
+router.post('/profile', ensureAuthenticated, (req, res, next) => {
     User.findById(req.user.id, function(err, user) {
         const {login, firstname, lastname, email} = req.body;
         let errors = [];
@@ -38,7 +38,7 @@ router.post('/user', ensureAuthenticated, (req, res, next) => {
             user.save()
             .then((value) => {
                 console.log(value);
-                res.status(301).redirect('/user');
+                res.status(301).redirect('/profile');
             })
             .catch(err);
         }
