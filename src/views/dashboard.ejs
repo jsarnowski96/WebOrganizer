@@ -10,7 +10,7 @@
 </section>
 <section>
     <div class="container col-12 col-sm-6 col-lg-3 text-center justify-content-center">
-        <% var i; %>
+        <% var i, row; %>
         <% if(notes.length === 0) { %>
             <div class="jumbotron jumbotron-fluid bg-white" style="margin-top: 10vh;">
                 <div class="container">
@@ -20,17 +20,19 @@
                 </div>
             </div>
         <% } %>
+    </div>
+    <div class="container col-lg-6 col-md-6 col-sm-12 text-center justify-content-center">
         <% for(i = 0; i < notes.length; i++) { %>
-            <div class="card" style="margin-top: 1vh; margin-bottom: 1vh;">
-                    <div class="card-header">
-                        <%- notes[i].title %>
-                    </div>                    
-                    <div class="card-body">
-                        <hr><p class="card-text"><%- notes[i].body %></p><hr>
-                        <a href="/dashboard/note/edit/<%- notes[i]._id %>" role="button" class="btn btn-success">Edit</a>
-                        <a href="/dashboard/note/delete/<%- notes[i]._id %>" data-method="delete" role="button" class="btn btn-danger">Delete</a>
-                    </div>
+            <div class="card row" style="margin-top: 1vh; margin-bottom: 1vh;">
+                <div class="card-header">
+                    <%- notes[i].title %>
+                </div>                    
+                <div class="card-body">
+                    <hr><p class="card-text"><%- notes[i].body %></p><hr>
+                    <a href="/dashboard/note/edit/<%- notes[i]._id %>" role="button" class="btn btn-success">Edit</a>
+                    <a href="/dashboard/note/delete/<%- notes[i]._id %>" data-method="delete" role="button" class="btn btn-danger">Delete</a>
                 </div>
+            </div>
         <% } %>
     </div>
 </section>
