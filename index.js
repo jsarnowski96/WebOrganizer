@@ -61,13 +61,4 @@ app.get('/favicon.ico', (req, res, next) => {
     res.status(404);
 }) 
 
-app.all('*', (req, res, next) => {
-    if(!req.isAuthenticated()) {
-        res.status(401).redirect('/');
-    } else {
-        res.status(401).redirect('/dashboard');
-    }
-    throw new Error("Bad Request");
-})
-
 module.exports = app;

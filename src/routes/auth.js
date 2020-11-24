@@ -2,6 +2,7 @@ const {ensureAuthenticated} = require('../config/auth.js');
 const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const mongoose = require('mongoose');
 const User = require('../models/user');
 
 const router = express.Router();
@@ -61,6 +62,7 @@ router.post('/register', (req, res, next) => {
                 res.status(400).render('register', {errors, login, firstname, lastname, email, password, password_confirm, active: 'register'});
             } else {
                 const user = new User({
+                    _id: new mongoose.Types.ObjectId(),
                     login: login,
                     firstname: firstname,
                     lastname: lastname,

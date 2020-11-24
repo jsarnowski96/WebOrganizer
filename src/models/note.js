@@ -20,6 +20,18 @@ const NoteSchema = new mongoose.Schema({
         ref: 'User'
     },
 
+    priority: {
+        type: String,
+        required: true,
+        default: 'Medium'
+    },
+
+    status: {
+        type: String,
+        required: true,
+        default: 'To do'
+    },
+
     created_at: {
         type: Date,
         default: Date.now

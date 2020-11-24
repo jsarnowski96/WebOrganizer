@@ -1,15 +1,59 @@
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.2.0/readmore.js"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        var lineHeight = 20;
+        var lines = 6;
+        $('.card-text').readmore({
+            speed: 1000,
+            moreLink: '<a href="#" role="button" name="readmore" class="btn btn-info">Read more</a>',
+            lessLink: '<a href="#" role="button" name="readless" class="btn btn-secondary">Read less</a>',
+            collapsedHeight: lineHeight * lines,
+            afterToggle: function(trigger, element, expanded) {
+                if(!expanded) {
+                    $('html, body').animate({ scrollTop: element.offset().top }, {duration: 1000 });
+                }
+            }
+        });
+
+        $('b[name="priority"]').filter(function () {
+            return $(this).text() === 'Low';
+        }).css('color', 'green');
+
+        $('b[name="priority"]').filter(function () {
+            return $(this).text() === 'Medium';
+        }).css('color', 'orange');
+
+        $('b[name="priority"]').filter(function () {
+            return $(this).text() === 'High';
+        }).css('color', 'red');
+
+        $('b[name="status"]').filter(function () {
+            return $(this).text() === 'To do';
+        }).css('color', 'blue');
+
+        $('b[name="status"]').filter(function () {
+            return $(this).text() === 'In progress';
+        }).css('color', 'orange');
+
+        $('b[name="status"]').filter(function () {
+            return $(this).text() === 'Done';
+        }).css('color', 'green');
+
+    });
+</script>
 <section>
-    <div class="container col-12 col-sm-6 col-lg-3 text-center justify-content-center">
+    <div class="container col-lg-6 col-md-6 col-sm-12 text-center justify-content-center">
         <hr><h1>Dashboard</h1><hr>
         <p>Welcome back, <a href="/profile"><%= user.login %></a>!</p>
         <% if(notes.length > 0) { %>
-            <a href="/dashboard/note/create" role="button" class="btn btn-primary col-6">Create new note</a>
+            <a href="/dashboard/note/create" role="button" class="btn btn-primary col-12 col-sm-12 col-md-8 col-lg-4">Create new note</a>
         <% } %>
         <%- include ('./partials/messages') %>
     </div>
 </section>
 <section>
-    <div class="container col-12 col-sm-6 col-lg-3 text-center justify-content-center">
+    <div class="container col-lg-6 col-md-6 col-sm-12 text-center justify-content-center">
         <% var i, row; %>
         <% if(notes.length === 0) { %>
             <div class="jumbotron jumbotron-fluid bg-white" style="margin-top: 10vh;">
@@ -19,6 +63,8 @@
                   <a href="/dashboard/note/create" role="button" class="btn btn-primary col-6">Create new note</a>
                 </div>
             </div>
+        <% } else { %>
+        <h2 class="mt-5 mb-3">Your notes:</h2>
         <% } %>
     </div>
     <div class="container col-lg-6 col-md-6 col-sm-12 text-center justify-content-center">
@@ -28,7 +74,9 @@
                     <%- notes[i].title %>
                 </div>                    
                 <div class="card-body">
-                    <hr><p class="card-text"><%- notes[i].body %></p><hr>
+                    <hr><p class="card-text" style="overflow: hidden"><%- notes[i].body %></p></hr>
+                    <p style="float: left;">Priority: <b name="priority"><%- notes[i].priority %></b></p>
+                    <p style="float: right;">Status: <b name="status"><%- notes[i].status %></b></p>
                     <a href="/dashboard/note/edit/<%- notes[i]._id %>" role="button" class="btn btn-success">Edit</a>
                     <a href="/dashboard/note/delete/<%- notes[i]._id %>" data-method="delete" role="button" class="btn btn-danger">Delete</a>
                 </div>
@@ -36,4 +84,3 @@
         <% } %>
     </div>
 </section>
-    
