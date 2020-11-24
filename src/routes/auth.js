@@ -2,27 +2,23 @@ const {ensureAuthenticated} = require('../config/auth.js');
 const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
-const flash = require('connect-flash');
-const Profile = require('../models/profile');
+const User = require('../models/user');
 
 const router = express.Router();
 
 router.get('/login', (req, res, next) => {
-    res.status(200);
-    res.render('login', {active: 'login'});
+    res.status(200).render('login', {active: 'login'});
 });
 
 router.get('/register', (req, res, next) => {
-    res.status(200);
-    res.render('register', {active: 'register'});
+    res.status(200).render('register', {active: 'register'});
 });
 
 router.get('/logout', ensureAuthenticated, (req, res, next) => {
     console.log('User ' + req.user.login + ' logged out successfully.');
     req.logout();
-    req.flash('success_msg', 'You have successfully logged out!');
     res.locals.user = null;
-    res.render('welcome', {active : 'home'})
+    res.status(200).render('welcome', {active : 'home'})
 })
 
 router.post('/login', (req, res, next) => {
@@ -34,10 +30,9 @@ router.post('/login', (req, res, next) => {
 })
 
 router.post('/register', (req, res, next) => {
-    res.status(200);
     const {login, firstname, lastname, email, password, password_confirm} = req.body;
     let errors = [];
-    console.log('Login: ' + login + ' Firstname: ' + firstname + ' Lastname: ' + lastname + ' Email: ' + email + ' Password: ' + password);
+    //console.log('Login: ' + login + ' Firstname: ' + firstname + ' Lastname: ' + lastname + ' Email: ' + email + ' Password: ' + password);
     if(!login || !firstname || !lastname || !email || !password || !password_confirm) {
         errors.push({msg: 'Please fill in all fields'});
     }
@@ -59,13 +54,13 @@ router.post('/register', (req, res, next) => {
             active: 'register'
         });
     } else {
-        Profile.findOne({email : email}).exec((err, profile) => {
-            console.log(profile);
-            if(profile) {
+        User.findOne({email : email}).exec((err, user) => {
+            console.log(user);
+            if(user) {
                 errors.push({msg: 'There is already an account using this email'});
-                res.render('register', {errors, login, firstname, lastname, email, password, password_confirm, active: 'register'});
+                res.status(400).render('register', {errors, login, firstname, lastname, email, password, password_confirm, active: 'register'});
             } else {
-                const newProfile = new Profile({
+                const user = new User({
                     login: login,
                     firstname: firstname,
                     lastname: lastname,
@@ -74,15 +69,13 @@ router.post('/register', (req, res, next) => {
                 });
 
                 bcrypt.genSalt(10, (err, salt) =>
-                bcrypt.hash(newProfile.password, salt,
+                bcrypt.hash(user.password, salt,
                     (err, hash) => {
                         if(err) throw err;
-                            newProfile.password = hash;
-                        newProfile.save()
-                        .then((value) => {
-                            req.flash('success_msg', 'You have successfully registered!');
-                            res.redirect('/auth/login');
-                            res.status(301);
+                            user.password = hash;
+                        user.save()
+                        .then(() => {
+                            res.status(301).redirect('/auth/login');
                         })
                         .catch(value => console.log(value));
                     }))

@@ -26,13 +26,9 @@ app.use(express.urlencoded({extended : false}));
 
 app.use(morgan('common'));
 
-// Basic key routes
 const indexRoutes = require('./src/routes/index');
 const authRoutes = require('./src/routes/auth');
 const dashboardRoutes = require('./src/routes/dashboard');
-const { waitForDebugger } = require('inspector');
-const { render } = require('ejs');
-const { profile } = require('console');
 
 app.use(express.static(path.join(__dirname, 'src')));
 app.set('views', path.join(__dirname, '/src/views'));
@@ -53,7 +49,7 @@ app.use((req, res, next) => {
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     res.locals.user = req.user;
-next();
+    next();
 })
 
 // Routing & redirections
@@ -67,9 +63,9 @@ app.get('/favicon.ico', (req, res, next) => {
 
 app.all('*', (req, res, next) => {
     if(!req.isAuthenticated()) {
-        res.status(400).redirect('/');
+        res.status(401).redirect('/');
     } else {
-        res.status(400).redirect('/dashboard');
+        res.status(401).redirect('/dashboard');
     }
     throw new Error("Bad Request");
 })

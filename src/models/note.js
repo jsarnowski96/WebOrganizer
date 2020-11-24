@@ -15,9 +15,9 @@ const NoteSchema = new mongoose.Schema({
         required: true
     },
 
-    profile_id: {
+    user_id: {
         type: SchemaObjectId,
-        ref: 'Profile'
+        ref: 'User'
     },
 
     created_at: {

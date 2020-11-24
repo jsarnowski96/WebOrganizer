@@ -5,11 +5,10 @@ const router = express.Router();
 const Note = require('../models/note');
 
 router.get('/', ensureAuthenticated, (req, res, next) => {
-    res.status(200);
     let user = req.user;
-    Note.find({profile_id: user.id}, function(err, notes) {
+    Note.find({user_id: user.id}, function(err, notes) {
         try {
-            res.render('dashboard', {
+            res.status(200).render('dashboard', {
                 notes: notes,
                 user: user,
                 active: 'dashboard'
@@ -21,21 +20,19 @@ router.get('/', ensureAuthenticated, (req, res, next) => {
 });
 
 router.get('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
-    res.status(200);
     Note.findById(req.params.id, function(err, note) {
             let errors = [];
             if(!note) {
                 errors.push({msg: "Note with this ID does not exist"});
             }
             if(errors.length > 0) {
-                res.render('dashboard', {errors: errors, active: 'dashboard'});
+                res.status(500).render('dashboard', {errors: errors, active: 'dashboard'});
             } else {
                 try {
                     let subject, content;
                     subject = note.title;
                     content = note.body;
-    
-                    res.render('note', {
+                    res.status(200).render('note', {
                         subject,
                         content,
                         id: req.params.id,
@@ -43,7 +40,7 @@ router.get('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
                     });
                 } catch(error) {
                     console.log('Error during obtaining record for note ID ' + req.params.id);
-                    console.log(error);
+                    res.status(500).send({error});
                 }
             }
 
@@ -51,7 +48,6 @@ router.get('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
 })  
 
 router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
-    res.status(200);
     Note.findById(req.params.id, function(err, note) {
         const {title, body} = req.body;
         let errors = [];
@@ -59,7 +55,7 @@ router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
             errors.push({msg: "One or more fields are empty"});
         }
         if(errors.length > 0) {
-            res.render('dashboard', {
+            res.status(500).render('dashboard', {
                 errors: errors,
                 title: title,
                 body: body,
@@ -71,9 +67,7 @@ router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
             note.save()
             .then((value) => {
                 console.log(value);
-                req.flash('success_msg', 'You have successfully modified your note!');
-                res.redirect('/dashboard');
-                res.status(301);
+                res.status(301).redirect('/dashboard');
             })
             .catch(err);
         }
@@ -81,7 +75,6 @@ router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
 })
 
 router.get('/note/delete/:id', (req, res, next) => {
-    res.status(200);
     const id = req.params.id;
     Note.findByIdAndDelete({_id: id}, function(err, note) {
         let errors = [];
@@ -89,13 +82,13 @@ router.get('/note/delete/:id', (req, res, next) => {
             errors.push({msg: 'You have not provided the ID of the note marked for deletion'});
         }
         if(errors.length > 0) {
-            res.render('dashboard', {
+            res.status(200).render('dashboard', {
                 errors: errors,
                 active: 'dashboard'
             });
         } else {
             try {
-                res.redirect('/dashboard');
+                res.status(500).redirect('/dashboard');
             } catch(err) {
                 console.log('Error during deletion of user\'s note with ID' + id + ': ' + err);
             }
@@ -104,7 +97,6 @@ router.get('/note/delete/:id', (req, res, next) => {
 });
 
 router.post('/note/create', ensureAuthenticated, (req, res, next) => {
-    res.status(200);
     const {title, body} = req.body;
     let errors = [];
     console.log('Title: ' + title + ' Body: ' + body);
@@ -112,7 +104,7 @@ router.post('/note/create', ensureAuthenticated, (req, res, next) => {
         errors.push({msg: 'Please fill in all fields'});
     }
     if(errors.length > 0) {
-        res.render('newNote', {
+        res.status(500).render('newNote', {
             errors: errors,
             title: title,
             body: body,
@@ -123,22 +115,20 @@ router.post('/note/create', ensureAuthenticated, (req, res, next) => {
         const newNote = new Note({
             title: title,
             body: body,
-            profile_id: res.locals.user.id
+            user_id: res.locals.user.id
         });
         newNote.save()
         .then((value) => {
             console.log(value);
-            req.flash('success_msg', 'You have successfully added new note!');
-            res.redirect('/dashboard');
-            res.status(301);
+            //req.flash('success_msg', 'You have successfully added new note!');
+            res.status(301).redirect('/dashboard');
         })
         .catch(value => console.log(value));
     }
 });
 
 router.get('/note/create', ensureAuthenticated, (req, res, next) => {
-    res.status(200);
-    res.render('newNote', {
+    res.status(200).render('newNote', {
         user: req.user,
         active: 'dashboard'
     });
