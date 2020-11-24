@@ -37,6 +37,8 @@ router.get('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
                     res.status(200).render('note', {
                         subject,
                         content,
+                        priority,
+                        status,
                         id: req.params.id,
                         active: 'dashboard'
                     });
