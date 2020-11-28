@@ -11,7 +11,7 @@ MEN stack web application designed to help you organize your day-to-day routine.
 [Licence](#licence)<br /><br />
 
 ## Description
-Web Organizer allows you to add and modify notes with a simple title-body structure. You can use HTML tags directly in your note's body in order to better organize their structure.<br />
+Web Organizer allows you to add and modify notes with a simple title-body structure. You can use HTML tags directly in your note's body in order to better organize their structure and display.<br />
 
 ## Technologies
 - NodeJS<br />
