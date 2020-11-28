@@ -1,0 +1,109 @@
+{
+    "home": {
+        "header": "Witaj w Web Organizerze!",
+        "msg": "Utwórz konto lub zaloguj się:",
+        "register": "Rejestracja",
+        "login": "Logowanie"
+    },
+
+    "about": {
+        "header": "O aplikacji",
+        "paragraph": "Web Organizer jest prostą aplikacją webową pozwalającą na tworzenie krótkich notatek i ich późniejszą modyfikację. Obsługuje zagnieżdzone tagi HTML, co umożlwia lepsze formatowanie tekstu wewnątrz ciała notatek."
+    },
+
+    "contact": {
+        "header": "Formularz kontaktowy",
+        "emai": "Adres email",
+        "firstname": "Imię",
+        "lastname": "Nazwisko",
+        "subject": "Tytuł wiadomości",
+        "message": "Treść wiadomości",
+        "send": "Wyślij",
+        "cancel": "Anuluj"
+    },
+
+    "dashboard": {
+        "header": "Witaj ponownie,",
+        "notes": "Twoje notatki:",
+        "created_at": "Utworzono:",
+        "edit": "Edytuj",
+        "delete": "Usuń",
+        "priority": "Priorytet",
+        "status": "Status",
+        "readMore": "Czytaj dalej",
+        "readLess": "Czytaj mniej"
+    },
+
+    "profile": {
+        "header": "Profil",
+        "firstname": "Imię",
+        "lastname": "Nazwisko",
+        "email": "Adres email",
+        "edit": "Edytuj",
+        "save": "Zapisz zmiany",
+        "cancel": "Anuluj"
+    },
+
+    "note": {
+        "header": "Notatka",
+        "title": "Tytuł",
+        "body": "Treść notatki",
+        "priority": "Priorytet",
+        "status": "Status",
+        "edit": "Edytuj",
+        "save": "Zapisz zmiany",
+        "return": "Wróć",
+        "cancel": "Anuluj"
+    },
+
+    "login":{
+        "header": "Logowanie",
+        "email": "Adres email",
+        "password": "Hasło",
+        "login": "Zaloguj się",
+        "helper": "Nie masz konta? Żaden problem!"
+    },
+
+    "register": {
+        "header": "Rejestracja",
+        "firstname": "Imię",
+        "lastname": "Nazwisko",
+        "email": "Adres email",
+        "password": "Hasło",
+        "confirmPassword": "Potwierdź hasło",
+        "register": "Zarejestruj",
+        "reset": "Wyczyść formularz",
+        "cancel": "Anuluj",
+        "helper": "Masz już konto?",
+        "login": "Zaloguj się"
+    },
+
+    "navbar": {
+        "home": "Strona główna",
+        "about": "O aplikacji",
+        "contact": "Kontakt",
+        "login": "Logowanie",
+        "register": "Rejestracja",
+        "dashboard": "Dashboard",
+        "profile": "Profil",
+        "logout": "Wyloguj"
+    },
+
+    "modals": {
+        "headers": {
+            "register": "Rejestracja użytkownika",
+            "logout": "Wylogowano użytkownika",
+            "noteUpdated": "Notatka zaktualizowana"
+        },
+        "body": {
+            "register": "Pomyślnie dodano użytkownka do bazy!",
+            "logout": "Pomyślnie wylogowano!",
+            "noteUpdated": "Notatka została zaktualizowana!"
+        },
+        "buttons": {
+            "register": "Przejdź do logowania",
+            "logout": "Wróć do strony głównej",
+            "noteUpdated": "Wróć do panelu użytkownika"
+        }
+    }
+}

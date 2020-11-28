@@ -2,6 +2,13 @@ const http = require('http');
 const path = require('path');
 const app = require('./index');
 
+const { I18n } = require('i18n')
+ 
+const i18n = new I18n({
+  locales: ['en', 'pl'],
+  directory: path.join(__dirname, 'locales')
+})
+
 async function server_init() {
     const port = process.env.PORT || 3300;
     const server = http.createServer(app);
