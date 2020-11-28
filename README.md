@@ -3,7 +3,6 @@ MEN stack web application designed to help you organize your day-to-day routine.
 
 ## Table of contents
 [Description](#description)<br />
-[Architecture](#architecture)<br />
 [Technologies](#technologies)<br />
 [Public tests environment](#public-tests-environment)<br />
 [File structure](#file-structure)<br />
@@ -12,14 +11,7 @@ MEN stack web application designed to help you organize your day-to-day routine.
 [Licence](#licence)<br /><br />
 
 ## Description
-Web Organizer allows you to add and modify notes with a simple title-body structure. Starting from day 1 the app provides a set of very basic features, however I will be successively expanding them.<br/><br />
-
-## Architecture
-Web Organizer consists of several types of files performing different tasks. We can distinguish two basic types:
-- `.ejs` files, served as a frontend<br />
-- `.js` files, performing most of the tasks on the backend<br />
-
-All frontend is rendered server-side.<br />
+Web Organizer allows you to add and modify notes with a simple title-body structure. You can use HTML tags directly in your note's body in order to better organize their structure and display.<br />
 
 ## Technologies
 - NodeJS<br />
@@ -41,8 +33,8 @@ http://78.46.150.191:3300/<br /><br />
 - `/src/views/partials`: stores `.ejs` 'sub-views', loaded either in `layout.ejs` or appropriate view file in `/src/views`<br /><br />
 
 ## Current features
-- Create, read, update or delete your notes via intuitive user interface<br />
-- Modify your personal information<br/><br /><br />
+- Perform basic CRUD operations within your dashboard<br />
+- Supports HTML tags embedded directly in note's body. Items such as links, images, headers or lists will be correctly interpreted by the browser, which allows you to customize them even better<br /><br /><br />
 
 ### Setting up local instance
 First of all, run the following command:<br />
