@@ -14,8 +14,8 @@ module.exports = function(passport) {
                         message: 'This email is not registered in our database'
                     });
                 }
-                bcrypt.compare(password, user.password, (err, isMatch) => {
-                    if(err) throw err;
+                bcrypt.compare(password, user.password, (error, isMatch) => {
+                    if(error) throw error;
                     if(isMatch) {
                         return done(null, user);
                     } else {
@@ -25,8 +25,8 @@ module.exports = function(passport) {
                     }
                 })
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             })
         })
     )
@@ -36,8 +36,8 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
+        User.findById(id, function(error, user) {
+            done(error, user);
         });
     });
 }

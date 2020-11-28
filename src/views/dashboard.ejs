@@ -73,10 +73,10 @@
                 <div class="card-header text-center">
                     <p style="float: left" class="mt-2">Created at: <%- notes[i].created_at %></p><p style="float: right" class="mt-2"><b><%- notes[i].title %></b></p>
                 </div>                    
-                <div class="card-body flex-column">
+                <div class="card-body flex-column justify-content-center">
                     <p style="float: left;">Priority: <b name="priority"><%- notes[i].priority %></b></p>
                     <p style="float: right;">Status: <b name="status"><%- notes[i].status %></b></p><br />
-                    <hr><p class="card-text text-justify" style="white-space: pre-wrap; overflow: hidden"><%- notes[i].body %></p><hr />
+                    <hr><p class="card-text text-justify justify-content-center" style="white-space: pre-wrap; overflow: hidden" id="note"><%- notes[i].body %></p><hr />
                     <div class="container d-flex flex-row col-2 justify-content-center">
                         <a href="/dashboard/note/edit/<%- notes[i]._id %>" role="button" class="btn btn-success mr-1">Edit</a>
                         <a href="/dashboard/note/delete/<%- notes[i]._id %>" data-method="delete" role="button" class="btn btn-danger">Delete</a>

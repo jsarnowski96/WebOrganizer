@@ -1,26 +1,36 @@
 const {ensureAuthenticated} = require('../config/auth.js');
 const express = require('express');
 const router = express.Router();
+const sanitizeHtml = require('sanitize-html');
 
 const Note = require('../models/note');
 
 router.get('/', ensureAuthenticated, (req, res, next) => {
     let user = req.user;
-    Note.find({user_id: user.id}, function(err, notes) {
+    Note.find({user_id: user.id}, function(error, notes) {
         try {
+            notes.forEach(note => {
+                note.body = sanitizeHtml(note.body, {
+                    allowedTags: [ 'b', 'i', 'em', 'strong', 'a', 'ul', 'ol', 'li', 'p', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+                    allowedAttributes: {
+                      'a': [ 'href' ], 'img': [ 'src' ]
+                    },
+                    allowedIframeHostnames: ['www.youtube.com']
+                }); 
+            });
             res.status(200).render('dashboard', {
                 notes: notes,
                 user: user,
                 active: 'dashboard'
             });
-        } catch(err) {
-            console.log('Error during retrieving user\'s notes: ' + err);
+        } catch(error) {
+            console.log('Error during retrieving user\'s notes: ' + error);
         }
     });
 });
 
 router.get('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
-    Note.findById(req.params.id, function(err, note) {
+    Note.findById(req.params.id, function(error, note) {
             let errors = [];
             if(!note) {
                 errors.push({msg: "Note with this ID does not exist"});
@@ -52,7 +62,7 @@ router.get('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
 })  
 
 router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
-    Note.findById(req.params.id, function(err, note) {
+    Note.findById(req.params.id, function(error, note) {
         const {title, body, priority, status} = req.body;
         let errors = [];
         if(!title || !body || !priority || !status) {
@@ -75,16 +85,16 @@ router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
             note.save()
             .then((value) => {
                 console.log(value);
-                res.status(301).redirect('/dashboard');
+                res.status(200);
             })
-            .catch(err);
+            .catch(error);
         }
     });
 })
 
 router.get('/note/delete/:id', ensureAuthenticated, (req, res, next) => {
     const id = req.params.id;
-    Note.findByIdAndDelete({_id: id}, function(err, note) {
+    Note.findByIdAndDelete({_id: id}, function(error, note) {
         let errors = [];
         if(!id) {
             errors.push({msg: 'You have not provided the ID of the note marked for deletion'});
@@ -97,8 +107,8 @@ router.get('/note/delete/:id', ensureAuthenticated, (req, res, next) => {
         } else {
             try {
                 res.status(500).redirect('/dashboard');
-            } catch(err) {
-                console.log('Error during deletion of user\'s note with ID' + id + ': ' + err);
+            } catch(error) {
+                console.log('Error during deletion of user\'s note with ID' + id + ': ' + error);
             }
         }
     });

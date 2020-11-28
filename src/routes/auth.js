@@ -17,16 +17,16 @@ router.get('/register', (req, res, next) => {
 
 router.get('/logout', ensureAuthenticated, (req, res, next) => {
     console.log('User ' + req.user.login + ' logged out successfully.');
+    req.session.destroy();
     req.logout();
-    res.locals.user = null;
+    //res.locals.user = null;
     res.status(200).render('welcome', {active : 'home'})
 })
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/dashboard',
-        failureRedirect: '/auth/login',
-        failureFlash: true
+        failureRedirect: '/auth/login'
     }) (req, res, next);
 })
 
@@ -50,12 +50,10 @@ router.post('/register', (req, res, next) => {
             firstname: firstname,
             lastname: lastname,
             email: email,
-            password: password,
-            password_confirm: password_confirm,
             active: 'register'
         });
     } else {
-        User.findOne({email : email}).exec((err, user) => {
+        User.findOne({email : email}).exec((error, user) => {
             console.log(user);
             if(user) {
                 errors.push({msg: 'There is already an account using this email'});
@@ -70,20 +68,21 @@ router.post('/register', (req, res, next) => {
                     password: password
                 });
 
-                bcrypt.genSalt(10, (err, salt) =>
+                bcrypt.genSalt(10, (error, salt) =>
                 bcrypt.hash(user.password, salt,
-                    (err, hash) => {
-                        if(err) throw err;
+                    (error, hash) => {
+                        if(error) throw error;
                             user.password = hash;
                         user.save()
                         .then(() => {
-                            res.status(301).redirect('/auth/login');
+                            res.status(200);
                         })
                         .catch(value => console.log(value));
-                    }))
+                    }));
             }
         });
     }
+    
 })
 
 module.exports = router;

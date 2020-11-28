@@ -18,7 +18,7 @@ mongoose.connect('mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PAS
     useUnifiedTopology: true
 })
 .then(() => console.log('ATLAS - Connected'))
-.catch((err) => console.log(err));
+.catch((error) => console.log(error));
 
 app.set('view engine', 'ejs');
 app.use(expressEjsLayout);

@@ -14,7 +14,7 @@ router.get('/profile', ensureAuthenticated, (req, res, next) => {
 })
 
 router.post('/profile', ensureAuthenticated, (req, res, next) => {
-    User.findById(req.user.id, function(err, user) {
+    User.findById(req.user.id, function(error, user) {
         const {login, firstname, lastname, email} = req.body;
         let errors = [];
         if(!login || !firstname || !lastname || !email) {
@@ -40,7 +40,7 @@ router.post('/profile', ensureAuthenticated, (req, res, next) => {
                 console.log(value);
                 res.status(301).redirect('/profile');
             })
-            .catch(err);
+            .catch(error);
         }
     });
 })
@@ -75,10 +75,10 @@ router.post('/contact', (req, res, next) => {
         text: `First name: ${firstname}\nLast name: ${lastname}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`
     };
 
-    smtpTrans.sendMail(mailOpts, (err, response) => {
-        if(err) {
+    smtpTrans.sendMail(mailOpts, (error, response) => {
+        if(error) {
             errors.push({msg: 'There was an issue with sending your contact form. Please try again.'});
-            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Error with sending contact form: ' + err);
+            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Error with sending contact form: ' + error);
             res.status(500).render('contact', {errors: errors, active: 'contact'});
         } else {
             res.status(301).redirect('/contact');
