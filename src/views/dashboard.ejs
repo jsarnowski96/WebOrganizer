@@ -53,10 +53,10 @@
     </div>
 </section>
 <section>
-    <div class="container col-lg-6 col-md-6 col-sm-12 text-center justify-content-center">
+    <div class="container col-lg-6 col-md-6 col-sm-12 justify-content-center">
         <% var i, row; %>
         <% if(notes.length === 0) { %>
-            <div class="jumbotron jumbotron-fluid bg-white" style="margin-top: 10vh;">
+            <div class="jumbotron jumbotron-fluid bg-white text-center" style="margin-top: 10vh;">
                 <div class="container">
                   <h1 class="display-4">Ooops!</h1>
                   <p class="lead">You have no notes available. Try to add some first:</p>
@@ -67,18 +67,20 @@
         <h2 class="mt-5 mb-3">Your notes:</h2>
         <% } %>
     </div>
-    <div class="container col-lg-6 col-md-6 col-sm-12 text-center justify-content-center">
+    <div class="container col-lg-6 col-md-6 col-sm-12 justify-content-center">
         <% for(i = 0; i < notes.length; i++) { %>
-            <div class="card row" style="margin-top: 1vh; margin-bottom: 1vh;">
-                <div class="card-header">
+            <div class="card" style="margin: 5px;">
+                <div class="card-header text-center">
                     <%- notes[i].title %>
                 </div>                    
-                <div class="card-body">
-                    <hr><p class="card-text" style="overflow: hidden"><%- notes[i].body %></p></hr>
+                <div class="card-body flex-column">
                     <p style="float: left;">Priority: <b name="priority"><%- notes[i].priority %></b></p>
-                    <p style="float: right;">Status: <b name="status"><%- notes[i].status %></b></p>
-                    <a href="/dashboard/note/edit/<%- notes[i]._id %>" role="button" class="btn btn-success">Edit</a>
-                    <a href="/dashboard/note/delete/<%- notes[i]._id %>" data-method="delete" role="button" class="btn btn-danger">Delete</a>
+                    <p style="float: right;">Status: <b name="status"><%- notes[i].status %></b></p><br />
+                    <hr><p class="card-text text-justify" style="white-space: pre-wrap; overflow: hidden"><%- notes[i].body %></p><hr />
+                    <div class="container d-flex flex-row col-2 justify-content-center">
+                        <a href="/dashboard/note/edit/<%- notes[i]._id %>" role="button" class="btn btn-success mr-1">Edit</a>
+                        <a href="/dashboard/note/delete/<%- notes[i]._id %>" data-method="delete" role="button" class="btn btn-danger">Delete</a>
+                    </div>
                 </div>
             </div>
         <% } %>

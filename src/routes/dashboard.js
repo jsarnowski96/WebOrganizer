@@ -34,7 +34,7 @@ router.get('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
                     content = note.body;
                     priority = note.priority;
                     status = note.status;
-                    res.status(200).render('note', {
+                    res.status(200).render('editNote', {
                         subject,
                         content,
                         priority,
@@ -82,7 +82,7 @@ router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
     });
 })
 
-router.get('/note/delete/:id', (req, res, next) => {
+router.get('/note/delete/:id', ensureAuthenticated, (req, res, next) => {
     const id = req.params.id;
     Note.findByIdAndDelete({_id: id}, function(err, note) {
         let errors = [];
