@@ -5,10 +5,10 @@ const sanitizeHtml = require('sanitize-html');
 
 const Note = require('../models/note');
 
-router.get('/', ensureAuthenticated, (req, res, next) => {
-    let user = req.user;
-    Note.find({user_id: user.id}, function(error, notes) {
-        try {
+router.get('/', ensureAuthenticated, async (req, res, next) => {
+    let errors = [];
+    Note.find({user_id: req.user.id})
+        .then((notes) => {
             notes.forEach(note => {
                 note.body = sanitizeHtml(note.body, {
                     allowedTags: [ 'b', 'i', 'em', 'strong', 'a', 'ul', 'ol', 'li', 'p', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -19,57 +19,68 @@ router.get('/', ensureAuthenticated, (req, res, next) => {
                 }); 
             });
             res.status(200).render('dashboard', {
+                errors: errors,
                 notes: notes,
-                user: user,
+                user: req.user,
                 active: 'dashboard'
-            });
-        } catch(error) {
-            console.log('Error during retrieving user\'s notes: ' + error);
-        }
-    });
+            });  
+        }).catch(error => {
+            console.log(error);
+    });  
 });
 
 router.get('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
-    Note.findById(req.params.id, function(error, note) {
-            let errors = [];
-            if(!note) {
-                errors.push({msg: "Note with this ID does not exist"});
-            }
-            if(errors.length > 0) {
-                res.status(500).render('dashboard', {errors: errors, active: 'dashboard'});
-            } else {
-                try {
-                    let subject, content, priority, status;
-                    subject = note.title;
-                    content = note.body;
-                    priority = note.priority;
-                    status = note.status;
-                    res.status(200).render('editNote', {
-                        subject,
-                        content,
-                        priority,
-                        status,
-                        id: req.params.id,
-                        active: 'dashboard'
-                    });
-                } catch(error) {
-                    console.log('Error during obtaining record for note ID ' + req.params.id);
-                    res.status(500).send({error});
-                }
-            }
-
-        });
+    let errors = [];
+    Note.findById({_id: req.params.id, user_id: req.user.id}, function(error, note) {
+        let subject, content, priority, status;
+        if(!req.params.id || !req.user || !req.user.id) {
+            errors.push({msg: "Missing record ID or user."});
+        }
+        if(!note) {
+            errors.push({msg: "Username: " + req.user.login + " | User ID: " + req.user.id + " | Record ID: " + req.params.id + " - Note with this ID does not exist or does not belong to the user"});
+        } else if(note && note.user_id != req.user.id) {
+            errors.push({msg: "Username: " + req.user.login + " | User ID: " + req.user.id + " | Record ID: " + req.params.id + " - User unauthorized"});
+        }
+        if(error) {
+            errors.push({msg: error});
+        }
+        if(errors.length > 0) {
+            console.log(errors);
+            res.status(500).redirect('/dashboard');
+        } else {
+            subject = note.title;
+            content = note.body;
+            priority = note.priority;
+            status = note.status;
+            res.status(200).render('editNote', {
+                subject,
+                content,
+                priority,
+                status,
+                id: req.params.id,
+                active: 'dashboard'
+            });
+        }
+    })
 })  
 
 router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
-    Note.findById(req.params.id, function(error, note) {
+    let errors = [];
+    Note.findById({_id: req.params.id, user_id: req.user.id}, function(error, note) {
         const {title, body, priority, status} = req.body;
-        let errors = [];
         if(!title || !body || !priority || !status) {
             errors.push({msg: "One or more fields are empty"});
         }
+        if(!note) {
+            errors.push({msg: "Username: " + req.user.login + " | User ID: " + req.user.id + " | Record ID: " + req.params.id + " - Note does not exist or user tried to modify the record that does not belong to him"});
+        } else if(note && note.user_id != req.user.id) {
+            errors.push({msg: "Username: " + req.user.login + " | User ID: " + req.user.id + " | Record ID: " + req.params.id + " - User unauthorized"});
+        }
+        if(error) {
+            errors.push({msg: error});
+        }
         if(errors.length > 0) {
-            res.status(500).render('dashboard', {
+            res.status(500).render('editNote', {
                 errors: errors,
                 title: title,
                 body: body,
@@ -82,34 +93,53 @@ router.post('/note/edit/:id', ensureAuthenticated, (req, res, next) => {
             note.body = body;
             note.priority = priority;
             note.status = status;
-            note.save()
-            .then((value) => {
+            note.save(function (error, value) {
+                if(error) {
+                    errors.push({msg: error});   
+                    res.status(500).render('editNote', {
+                        errors: errors,
+                        title: title,
+                        body: body,
+                        priority: priority,
+                        status: status,
+                        active: 'dashboard'
+                    });
+                }
                 console.log(value);
                 res.status(200);
-            })
-            .catch(error);
+            });
         }
     });
 })
 
 router.get('/note/delete/:id', ensureAuthenticated, (req, res, next) => {
-    const id = req.params.id;
-    Note.findByIdAndDelete({_id: id}, function(error, note) {
-        let errors = [];
-        if(!id) {
+    let errors = [];
+    Note.findOneAndRemove({_id: req.params.id, user_id: req.user.id})
+    .then((note) => {
+        if(!req.params.id || !req.user || !req.user.id) {
             errors.push({msg: 'You have not provided the ID of the note marked for deletion'});
         }
+        if(!note) {
+            errors.push({msg: "Username: " + req.user.login + " | User ID: " + req.user.id + " | Record ID: " + req.params.id + " - Note does not exist or user tried to modify the record that does not belong to him"});
+        } else if(note && note.user_id != req.user.id) {
+            errors.push({msg: "Username: " + req.user.login + " | User ID: " + req.user.id + " | Record ID: " + req.params.id + " - User unauthorized"});
+        }
         if(errors.length > 0) {
-            res.status(200).render('dashboard', {
-                errors: errors,
-                active: 'dashboard'
-            });
+            res.status(500).redirect('/dashboard');
         } else {
             try {
-                res.status(500).redirect('/dashboard');
+                console.log('Deleted record ID ' + note._id);
+                res.status(200).redirect('/dashboard');
             } catch(error) {
-                console.log('Error during deletion of user\'s note with ID' + id + ': ' + error);
+                console.log('Error during deletion of user\'s note with ID' + req.params.id + ': ' + error);
             }
+        };
+    }).catch(error => {
+        errors.push({msg: error});
+        res.status(500).redirect('/dashboard');
+    }).finally(() => {
+        if(errors.length > 0) {
+            console.log(errors);
         }
     });
 });

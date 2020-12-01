@@ -15,7 +15,8 @@ dotenv.config();
 
 mongoose.connect('mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@'+process.env.DB_URL+'/'+process.env.DB_NAME+'?retryWrites=true&w=majority', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 })
 .then(() => console.log('ATLAS - Connected'))
 .catch((error) => console.log(error));
@@ -48,6 +49,7 @@ app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
+    res.locals.notes = '';
     res.locals.user = req.user;
     next();
 })
