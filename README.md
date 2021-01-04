@@ -16,6 +16,7 @@ Web Organizer allows you to add and modify notes with a simple title-body struct
 ## Technologies
 - NodeJS<br />
 - ExpressJS<br />
+- Embedded JavaScript Template<br />
 - Mongoose<br /><br />
 
 ## Public tests environment
