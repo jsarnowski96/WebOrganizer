@@ -10,14 +10,12 @@ const app = require('./index');
 //  directory: path.join(__dirname, 'locales')
 //})
 
-const options = {
-  key: fs.readFileSync('web-organizer.org.pl.crt'),
-  cert: fs.readFileSync('web-organizer.org.pl.key')
-};
-
 async function server_init() {
     const port = process.env.PORT || 443;
-    const server = http.createServer(options, app);
+    const server = http.createServer({
+       key: fs.readFileSync('web-organizer.org.pl.crt'),
+       cert: fs.readFileSync('web-organizer.org.pl.key')
+    }, app);
     server.listen(port);
     console.log(`Server is listening on port ${port}`);
 }
