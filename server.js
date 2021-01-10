@@ -11,7 +11,7 @@ const app = require('./index');
 //})
 
 async function server_init() {
-    const port = process.env.PORT || 443;
+    const port = process.env.PORT || 3300;
     const server = http.createServer({
        key: fs.readFileSync('web-organizer.org.pl.crt'),
        cert: fs.readFileSync('web-organizer.org.pl.key')
