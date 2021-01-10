@@ -63,11 +63,11 @@ Replace all placeholders with your config.<br />
 You don't have to manually create collections in the target database - they will be added automatically along with the first items.<br /><br />
 
 ## TODO
-- [ ] frontend polishing<br />
+- [x] frontend polishing<br />
 - [ ] `About` page<br />
-- [ ] Contact form handler<br />
+- [x] Contact form handler<br />
 - [ ] Expanding dashboard features (sorting/ordering, note priority, deadline, etc.)<br />
-- [ ] SSL Encryption<br /><br />
+- [x] SSL Encryption<br /><br />
 
 ### Licence
 Web Organizer is being distributed under GPL-3.0 licence.<br />
