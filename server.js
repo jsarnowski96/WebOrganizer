@@ -16,7 +16,7 @@ const options = {
 };
 
 async function server_init() {
-    const port = process.env.PORT || 3300;
+    const port = process.env.PORT || 443;
     const server = http.createServer(options, app);
     server.listen(port);
     console.log(`Server is listening on port ${port}`);
