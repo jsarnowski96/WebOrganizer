@@ -21,7 +21,7 @@ Web Organizer allows you to add and modify notes with a simple title-body struct
 
 ## Public tests environment
 You can check out the application at the following address:<br /><br />
-http://78.46.150.191:3300 or jsarnowski.pl/weborganizer<br /><br />
+http://78.46.150.191:3300 or http://jsarnowski.pl/weborganizer<br /><br />
 
 ## File structure
 - `/`: root directory containing server/app configuration files and environmental variables<br />
