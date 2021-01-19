@@ -72,7 +72,7 @@ Tip: You don't have to manually create collections in the target database - they
 
 ## Showcase
 ### Home screen:
-![home](./showcase/contact_form.png)<br />
+![home](./showcase/home.png)<br />
 
 ### Contact form:
 ![contact_form](./showcase/contact_form.png)<br />
