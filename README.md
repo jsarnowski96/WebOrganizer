@@ -39,6 +39,7 @@ http://78.46.150.191:3300 or http://jsarnowski.pl/weborganizer<br /><br />
 ## Current features
 - Perform basic CRUD operations within your dashboard<br />
 - Supports HTML tags embedded directly in note's body. Items such as links, images, headers or lists will be correctly interpreted by the browser, which allows you to customize them even better<br />
+- Each note is highlighted based on its status - Blue for 'To do', Orange for 'In progress' and Green for 'Done'<br />
 - Contact form's mailing feature is executed by `Nodemailer` library.<br /><br />
 
 ### Installation
