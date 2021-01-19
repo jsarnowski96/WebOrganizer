@@ -72,22 +72,22 @@ Tip: You don't have to manually create collections in the target database - they
 
 ## Showcase
 ### Home screen:
-![home](./showcase/home.png)<br />
+![home](./showcase/home.PNG)<br />
 
 ### Contact form:
-![contact_form](./showcase/contact_form.png)<br />
+![contact_form](./showcase/contact_form.PNG)<br />
 
 ### Registration page:
-![registration_page](./showcase/registration.png)<br />
+![registration_page](./showcase/registration.PNG)<br />
 
 ### Login page:
-![login_page](./showcase/login.png)<br />
+![login_page](./showcase/login.PNG)<br />
 
 ### Dashboard:
-![dashboard](./showcase/dashboard.png)<br />
+![dashboard](./showcase/dashboard.PNG)<br />
 
 ### Note edit view:
-![edit_note](./showcase/edit_note.png)<br />
+![edit_note](./showcase/edit_note.PNG)<br />
 
 ### Registration process & adding first notes:
 ![registration_gif](./showcase/registration_and_adding_first_notes.gif)<br />
@@ -106,7 +106,7 @@ Tip: You don't have to manually create collections in the target database - they
 - [x] `About` page<br />
 - [x] Contact form handler<br />
 - [ ] Expanding dashboard features (sorting/ordering, note priority, deadline, etc.)<br />
-- [] SSL Encryption<br /><br />
+- [ ] SSL Encryption<br /><br />
 
 ### Licence
 Web Organizer is being distributed under GPL-3.0 licence.<br />
