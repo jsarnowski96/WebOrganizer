@@ -8,6 +8,7 @@ MEN stack web application designed to help you organize your day-to-day routine.
 [File structure](#file-structure)<br />
 [Current features](#current-features)<br />
 [Installation](#installation)<br />
+[Showcase](#showcase)<br />
 [TODO](#todo)<br />
 [Licence](#licence)<br /><br />
 
