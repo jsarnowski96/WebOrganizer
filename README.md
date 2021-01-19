@@ -87,7 +87,7 @@ Tip: You don't have to manually create collections in the target database - they
 ![dashboard](./showcase/dashboard.PNG)<br />
 
 ### Note edit view:
-![edit_note](./showcase/edit_note.PNG)<br />
+![edit_note](./showcase/editing_note.PNG)<br />
 
 ### Registration process & adding first notes:
 ![registration_gif](./showcase/registration_and_adding_first_notes.gif)<br />
