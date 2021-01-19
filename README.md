@@ -19,7 +19,8 @@ Web Organizer allows you to add and modify notes with a simple title-body struct
 * ExpressJS<br />
 * Bootstrap
 * Embedded JavaScript templating<br />
-* Mongoose<br /><br />
+* Mongoose<br />
+* Nodemailer<br /><br />
 
 ## Public tests environment
 You can check out the application under following links:<br /><br />
@@ -37,7 +38,8 @@ http://78.46.150.191:3300 or http://jsarnowski.pl/weborganizer<br /><br />
 
 ## Current features
 - Perform basic CRUD operations within your dashboard<br />
-- Supports HTML tags embedded directly in note's body. Items such as links, images, headers or lists will be correctly interpreted by the browser, which allows you to customize them even better<br /><br /><br />
+- Supports HTML tags embedded directly in note's body. Items such as links, images, headers or lists will be correctly interpreted by the browser, which allows you to customize them even better<br />
+- Contact form's mailing feature is executed by `Nodemailer` library.<br /><br />
 
 ### Installation
 First of all, run the following command:<br />
@@ -62,6 +64,9 @@ MAIL_PORT = <mail_server_port>
 
 Replace all placeholders with your own config.<br />
 
+To launch the application locally, make sure you're in the root directory and then execute the following command:<br />
+`nodemon .\server.js`<br />
+
 Tip: You don't have to manually create collections in the target database - they will be added automatically along with the first items.<br /><br />
 
 ## TODO
@@ -69,7 +74,7 @@ Tip: You don't have to manually create collections in the target database - they
 - [x] `About` page<br />
 - [x] Contact form handler<br />
 - [ ] Expanding dashboard features (sorting/ordering, note priority, deadline, etc.)<br />
-- [x] SSL Encryption<br /><br />
+- [] SSL Encryption<br /><br />
 
 ### Licence
 Web Organizer is being distributed under GPL-3.0 licence.<br />
