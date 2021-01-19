@@ -11,4 +11,4 @@ async function server_init() {
     console.log(`Server is listening on port ${port}`);
 }
 
-server_init();git pull
+server_init();
