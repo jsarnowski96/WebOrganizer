@@ -70,6 +70,37 @@ To launch the application locally, make sure you're in the root directory and th
 
 Tip: You don't have to manually create collections in the target database - they will be added automatically along with the first items.<br /><br />
 
+## Showcase
+### Home screen:
+![home](./showcase/contact_form.png)<br />
+
+### Contact form:
+![contact_form](./showcase/contact_form.png)<br />
+
+### Registration page:
+![registration_page](./showcase/registration.png)<br />
+
+### Login page:
+![login_page](./showcase/login.png)<br />
+
+### Dashboard:
+![dashboard](./showcase/dashboard.png)<br />
+
+### Note edit view:
+![edit_note](./showcase/edit_note.png)<br />
+
+### Registration process & adding first notes:
+![registration_gif](./showcase/registration_and_adding_first_notes.gif)<br />
+
+### Editing note & adding custom HTML tags:
+![edit_note_gif](./showcase/editing_note_and_adding_custom_html_tags.gif)<br />
+
+### Adding long text in note with Read more button:
+![long_text_gif](./showcase/adding_long_text_with_read_more.gif)<br />
+
+### Editing profile and contact form behavior:
+![profile_gif](./showcase/editing_profile_and_contact_form_auto_fill.gif)<br /><br />
+
 ## TODO
 - [x] frontend polishing<br />
 - [x] `About` page<br />
