@@ -30,12 +30,21 @@ router.post('/', ensureAuthenticated, (req, res, next) => {
             user.lastname = lastname;
             user.email = email;
 
-            user.save()
-            .then((value) => {
+            user.save(function (error, value) {
+                if(error) {
+                    errors.push({msg: error});   
+                    res.status(500).render('profile', {
+                        errors: errors,
+                        login: login,
+                        firstname: firstname,
+                        lastname: lastname,
+                        email: email,
+                        active: 'profile'
+                    });
+                }
                 console.log(value);
-                res.status(301).redirect('/profile');
-            })
-            .catch(error);
+                res.status(200);
+            });
         }
     });
 })

@@ -1,3 +1,19 @@
+<script>
+    $(document).ready(function() {
+      var logoutBtn = document.getElementById('logout');
+        $(logoutBtn).on('click', function() {
+            $('div[name="confirmation"]').removeAttr("hidden");
+            $('button[name="goToWelcome"]').on('click', function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/auth/logout'
+                }).done(function() {
+                    window.location.replace('/');
+                });
+            });
+        });
+    });
+</script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/">Web Organizer</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,8 +60,9 @@
                 <% } else { %>
                     <a class="nav-link" href="/profile">Profile</a>
                 <% } %>
-                <a class="nav-link" href="/auth/logout">Logout</a>
+                <button type="submit" class="btn btn-link nav-link" id="logout" name="logout" data-toggle="modal" data-target=".modal">Logout</a>
             <% } %>
         </div>
     </div>
-  </nav>
+    <%- include('./modals/logout-modal.ejs') %>
+</nav>

@@ -1,23 +1,29 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         
 <script type="text/javascript">
-    $('form[name="newNote"]').submit(function(e){
+    $(document).ready(function() {
+      var saveBtn = document.getElementById('submit');
+      $(saveBtn).on('click', function() {
+        $('div[name="confirmation"]').removeAttr("hidden");
+      });
+
+      $('form[name="newNote"]').submit(function(e){
         e.preventDefault();
         $.ajax({
             type : 'POST',
             data: $('form[name="newNote"]').serialize(),
-            url : 'url',
-            success : function(data){
-               $("#success-note-publish-modal").modal("show");
-
-            }
+            url : '/dashboard/note/create'
+        }).done(function() {
+          $('button[name="goToDashboard"]').on('click', function() {
+            window.location.replace('/dashboard');
+          });
         });
-        return false;
+      });
     });
 </script>
 
 <section>
-  <div class="container col-12 col-sm-6 col-lg-3 text-center justify-content-center">
+  <div class="container col-lg-6 col-md-6 col-sm-12 text-center justify-content-center">
     <hr><h1>Create new note</h1><hr>
     <%- include ('./partials/messages') %>
     <form action="/dashboard/note/create" method="POST" name="newNote">
@@ -27,7 +33,7 @@
       </div>
       <div class="form-group">
         <label for="body">Body</label>
-        <textarea type="body" class="form-control" name="body" value="<%= typeof body != 'undefined' ? body : '' %>"></textarea>
+        <textarea type="body" class="form-control" name="body" rows="10" value="<%= typeof body != 'undefined' ? body : '' %>"></textarea>
       </div>
       <div class="form-group">
         <label for="priority">Priority</label>
@@ -37,9 +43,10 @@
           <option>High</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Submit note</button>
+      <button type="submit" class="btn btn-primary" id="submit" data-toggle="modal" data-target=".modal">Submit note</button>
       <button type="reset" class="btn btn-info">Reset</button>
       <a class="btn btn-danger" role="button" href="/dashboard">Cancel</a>
     </form>
+    <%- include('./partials/modals/new-note-modal.ejs') %>
   </div>
 </section>

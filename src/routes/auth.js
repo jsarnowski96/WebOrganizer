@@ -15,12 +15,12 @@ router.get('/register', (req, res, next) => {
     res.status(200).render('register', {active: 'register'});
 });
 
-router.get('/logout', ensureAuthenticated, (req, res, next) => {
+router.post('/logout', ensureAuthenticated, (req, res, next) => {
     console.log('User ' + req.user.login + ' logged out successfully.');
     req.session.destroy();
     req.logout();
     //res.locals.user = null;
-    res.status(200).render('welcome', {active : 'home'})
+    res.status(200).redirect('/');
 })
 
 router.post('/login', (req, res, next) => {
