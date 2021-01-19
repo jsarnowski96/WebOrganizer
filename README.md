@@ -35,7 +35,8 @@ http://78.46.150.191:3300 or http://jsarnowski.pl/weborganizer<br /><br />
 - `/src/routes`: contains all of the backend routing within the app, including user request handlers<br />
 - `/src/models`: contains basic DB schemas used by the application<br />
 - `/src/views`: stores all `.ejs` view files and templates served as a frontend<br />
-- `/src/views/partials`: stores `.ejs` 'sub-views', loaded either in `layout.ejs` or appropriate view file in `/src/views`<br /><br />
+- `/src/views/partials`: stores `.ejs` 'sub-views', loaded either in `layout.ejs` or appropriate view file in `/src/views`<br />
+- `/src/views/partials/modals`: contains custom modals for certain user's actions<br />
 
 ## Current features
 - Perform basic CRUD operations within your dashboard<br />
