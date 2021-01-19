@@ -66,7 +66,9 @@ MAIL_PORT = <mail_server_port>
 Replace all placeholders with your own config.<br /><br />
 
 To launch the application locally, make sure you're in the root directory and then execute the following command:<br />
-`nodemon .\server.js`<br /><br />
+`nodemon .\server.js`<br />
+
+Or, if you use `pm2` NodeJS process manager, you can simply run `pm2 server.js` inroot directly for convenienve and simplified management.<br /><br />
 
 Tip: You don't have to manually create collections in the target database - they will be added automatically along with the first items.<br /><br />
 
