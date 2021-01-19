@@ -43,7 +43,7 @@ http://78.46.150.191:3300 or http://jsarnowski.pl/weborganizer<br /><br />
 First of all, run the following command:<br />
 `git clone https://github.com/jsarnowski96/WebOrganizer`<br /><br />
 
-After cloning the repository, install dependencies:<br />
+After cloning the repository, open command prompt in project's directory and install dependencies:<br />
 `npm install`<br /><br />
 
 In order to test the application locally, you have to create `.env` file first in the root directory of the project (`/`).<br />
