@@ -1,5 +1,5 @@
 # Web Organizer
-MEN stack web application designed to help you organize your day-to-day routine.<br />
+MEN stack web application designed to help you organize your day-to-day routine. Create your own notes, set their priority and control them via status property.<br />
 
 ## Table of contents
 [Description](#description)<br />
@@ -7,6 +7,7 @@ MEN stack web application designed to help you organize your day-to-day routine.
 [Public tests environment](#public-tests-environment)<br />
 [File structure](#file-structure)<br />
 [Current features](#current-features)<br />
+[Installation](#installation)<br />
 [TODO](#todo)<br />
 [Licence](#licence)<br /><br />
 
@@ -14,13 +15,14 @@ MEN stack web application designed to help you organize your day-to-day routine.
 Web Organizer allows you to add and modify notes with a simple title-body structure. You can use HTML tags directly in your note's body in order to better organize their structure and display.<br />
 
 ## Technologies
-- NodeJS<br />
-- ExpressJS<br />
-- Embedded JavaScript Template<br />
-- Mongoose<br /><br />
+* NodeJS<br />
+* ExpressJS<br />
+* Bootstrap
+* Embedded JavaScript templating<br />
+* Mongoose<br /><br />
 
 ## Public tests environment
-You can check out the application at the following address:<br /><br />
+You can check out the application under following links:<br /><br />
 http://78.46.150.191:3300 or http://jsarnowski.pl/weborganizer<br /><br />
 
 ## File structure
@@ -37,7 +39,7 @@ http://78.46.150.191:3300 or http://jsarnowski.pl/weborganizer<br /><br />
 - Perform basic CRUD operations within your dashboard<br />
 - Supports HTML tags embedded directly in note's body. Items such as links, images, headers or lists will be correctly interpreted by the browser, which allows you to customize them even better<br /><br /><br />
 
-### Setting up local instance
+### Installation
 First of all, run the following command:<br />
 `git clone https://github.com/jsarnowski96/WebOrganizer`<br /><br />
 
@@ -58,13 +60,13 @@ MAIL_HOST = <mail_server_addr>
 MAIL_PORT = <mail_server_port>
 ```
 
-Replace all placeholders with your config.<br />
+Replace all placeholders with your own config.<br />
 
-You don't have to manually create collections in the target database - they will be added automatically along with the first items.<br /><br />
+Tip: You don't have to manually create collections in the target database - they will be added automatically along with the first items.<br /><br />
 
 ## TODO
 - [x] frontend polishing<br />
-- [ ] `About` page<br />
+- [x] `About` page<br />
 - [x] Contact form handler<br />
 - [ ] Expanding dashboard features (sorting/ordering, note priority, deadline, etc.)<br />
 - [x] SSL Encryption<br /><br />
