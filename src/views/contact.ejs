@@ -1,8 +1,43 @@
+<script>
+  $(document).ready(function() {
+    var submitBtn = document.getElementById('submit');
+    var response, msg, location;
+      $(submitBtn).on('click', function() {
+        $('div[name="confirmation"]').removeAttr("hidden");
+        $('form[name="contact"]').submit(function(e){
+          e.preventDefault();
+          $.ajax({
+            type : 'POST',
+            data: $('form[name="contact"]').serialize(),
+            url : '/contact',
+            success: function(data) {
+              response = data.authenticated;
+              console.log(response);
+            }
+          }).done(function () {
+            if(response) {
+              msg = 'Return to dashboard';
+              location = '/dashboard';
+            } else {
+              msg = 'Return to home page';
+              location = '/';
+            }
+
+            $('button[name="goToDestination"]').html(msg);
+            $('button[name="goToDestination"]').on('click', function() {
+                window.location.replace(location);
+            });
+          });
+        });
+      }); 
+  });
+</script>
+
 <section>
   <div class="container col-lg-6 col-md-6 col-sm-12 text-center justify-content-center">
     <hr><h1>Contact Form</h1><hr>
     <%- include ('./partials/messages') %>
-    <form action="/contact" method="POST">
+    <form action="/contact" method="POST" name="contact">
         <div class="form-group">
           <label for="email">Email address</label>
           <% if(!user) { %>
@@ -35,12 +70,13 @@
             <label for="message">Message</label>
             <textarea name="message" type="message" class="form-control" value="<%= typeof message != 'undefined' ? message : '' %>"></textarea>
           </div><br />
-        <button type="submit" class="btn btn-primary btn-block">Send</button>
+        <button type="submit" class="btn btn-primary btn-block" name="submit" id="submit" data-toggle="modal" data-target=".modal">Send</button>
         <% if(!user) { %>
             <a role="button" class="btn btn-danger btn-block" href="/">Cancel</a>
         <% } else { %>
             <a role="button" class="btn btn-danger btn-block" href="/dashboard">Cancel</a>
         <% } %>
     </form>
+    <%- include('./partials/modals/contact-form-sent-modal.ejs') %>
   </div>
 </section>

@@ -81,8 +81,12 @@ router.post('/contact', (req, res, next) => {
             console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Error with sending contact form: ' + error);
             res.status(500).render('contact', {errors: errors, active: 'contact'});
         } else {
-            res.status(301).redirect('/contact');
             console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Contact form successfully sent from ' + email);
+            if(req.isAuthenticated()) {
+                res.status(200).send({authenticated: true});
+            } else {
+                res.status(200).send({authenticated: false});
+            }
         }
     });
 });

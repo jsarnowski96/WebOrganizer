@@ -21,14 +21,21 @@
               $(saveBtn).remove();
               $("form")[0].reset();
             });
-  
-            $(saveBtn).on('click', function(e) {
-              e.preventDefault();
-              $("form").submit();
-              $('div[name="confirmation"]').removeAttr("hidden");
-              $('button[name="goToDashboard"]').on('click', function() {
-                  window.location.replace('/dashboard');
-              });
+
+            $(saveBtn).on('click', function() {
+                $('div[name="confirmation"]').removeAttr("hidden");
+                $('form[name="profile"]').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type : 'POST',
+                        data: $('form[name="profile"]').serialize(),
+                        url : '/profile'
+                    }).done(function() {
+                    $('button[name="goToDashboard"]').on('click', function() {
+                        window.location.replace('/dashboard');
+                    });
+                    });
+                });
             });
         });
     });

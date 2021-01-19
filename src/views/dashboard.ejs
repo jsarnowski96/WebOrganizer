@@ -41,17 +41,14 @@
         }).css('color', 'green');
 
         $('div[name="note"]').filter(function () {
-            console.log($(this).find('b[name="status"]').text());
             return $(this).find('b[name="status"]').text() === 'To do';
         }).children('div[name="header"]').addClass('bg-primary');
 
         $('div[name="note"]').filter(function () {
-            console.log($(this).find('b[name="status"]').text());
             return $(this).find('b[name="status"]').text() === 'In progress';
         }).children('div[name="header"]').addClass('bg-warning');
 
         $('div[name="note"]').filter(function () {
-            console.log($(this).find('b[name="status"]').text());
             return $(this).find('b[name="status"]').text() === 'Done';
         }).children('div[name="header"]').addClass('bg-success');
 
