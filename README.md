@@ -24,8 +24,8 @@ Web Organizer allows you to add and modify notes with a simple title-body struct
 * Nodemailer<br /><br />
 
 ## Public tests environment
-You can check out the application under following links:<br /><br />
-http://78.46.150.191:3300 or http://jsarnowski.pl/weborganizer<br /><br />
+You can check out the application under following link:<br /><br />
+http://78.46.150.191:2087<br /><br />
 
 ## File structure
 - `/`: root directory containing server/app configuration files and environmental variables<br />
