@@ -105,6 +105,10 @@ Tip: You don't have to manually create collections in the target database - they
 ### Editing profile and contact form behavior:
 ![profile_gif](./showcase/editing_profile_and_contact_form_auto_fill.gif)<br /><br />
 
+Web Organizer is also fully responsive - it perfectly fits both standard PC screens and mobile devices:<br /><br />
+
+![responsiveness](./showcase/responsiveness.gif)<br /><br />
+
 ## TODO
 - [x] frontend polishing<br />
 - [x] `About` page<br />
