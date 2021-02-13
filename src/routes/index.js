@@ -76,12 +76,13 @@ router.post('/contact', (req, res, next) => {
     };
 
     smtpTrans.sendMail(mailOpts, (error, response) => {
+        let ip = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress.replace('::ffff:', '');
         if(error) {
             errors.push({msg: 'There was an issue with sending your contact form. Please try again.'});
-            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Error with sending contact form: ' + error);
+            console.log(ip + ' - Error with sending contact form: ' + error);
             res.status(500).render('contact', {errors: errors, active: 'contact'});
         } else {
-            console.log(req.connection.remoteAddress.replace('::ffff:', '') + ' - Contact form successfully sent from ' + email);
+            console.log(ip + ' - Contact form successfully sent from ' + email);
             if(req.isAuthenticated()) {
                 res.status(200).send({authenticated: true});
             } else {
