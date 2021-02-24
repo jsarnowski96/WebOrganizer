@@ -8,6 +8,8 @@ const flash = require('connect-flash');
 const morgan = require('morgan');
 const expressEjsLayout = require('express-ejs-layouts');
 
+var favicon = require('serve-favicon');
+
 const app = express();
 
 const dotenv = require('dotenv');
@@ -33,6 +35,7 @@ const dashboardRoutes = require('./src/routes/dashboard');
 
 app.use(express.static(path.join(__dirname, 'src')));
 app.set('views', path.join(__dirname, '/src/views'));
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 app.use(session({
     secret: "weborg",
