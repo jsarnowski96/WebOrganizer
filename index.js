@@ -29,13 +29,13 @@ app.use(express.urlencoded({extended : false}));
 
 app.use(morgan('common'));
 
-const indexRoutes = require('./src/routes/index');
-const authRoutes = require('./src/routes/auth');
-const dashboardRoutes = require('./src/routes/dashboard');
-
 app.use(express.static(path.join(__dirname, 'src')));
 app.set('views', path.join(__dirname, '/src/views'));
 app.use(favicon(path.join(__dirname, 'favicon.ico')));
+
+const indexRoutes = require('./src/routes/index');
+const authRoutes = require('./src/routes/auth');
+const dashboardRoutes = require('./src/routes/dashboard');
 
 app.use(session({
     secret: "weborg",
