@@ -114,7 +114,7 @@ Web Organizer is also fully responsive - it perfectly fits both standard PC scre
 - [x] `About` page<br />
 - [x] Contact form handler<br />
 - [ ] Expanding dashboard features (sorting/ordering, note priority, deadline, etc.)<br />
-- [ ] SSL Encryption<br /><br />
+- [x] SSL Encryption<br /><br />
 
 ### Licence
 Web Organizer is being distributed under GPL-3.0 licence.<br />
