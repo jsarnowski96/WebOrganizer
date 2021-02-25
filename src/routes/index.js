@@ -69,8 +69,8 @@ router.post('/contact', (req, res, next) => {
     });
 
     const mailOpts = {
-        from: email,
-        to: process.env.MAIL_USER,
+        from: 'contact@web-organizer.org.pl',
+        to: email,
         subject: subject,
         text: `First name: ${firstname}\nLast name: ${lastname}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`
     };
