@@ -38,7 +38,7 @@ const authRoutes = require('./src/routes/auth');
 const dashboardRoutes = require('./src/routes/dashboard');
 
 app.use(session({
-    secret: "weborg",
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
